@@ -16,14 +16,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" integrity="sha512-RPxGl20NcAUAq1+Tfj8VjurpvkZaep2DeCgOfQ6afXSEgcvrLE6XxDG2aacvwjdyheM/bkwaLVc7kk82+mafkQ==" crossorigin="anonymous" referrerpolicy="no-referrer" ></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" ></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" integrity="sha512-uvXdJud8WaOlQFjlz9B15Yy2Au/bMAvz79F7Xa6OakCl2jvQPdHD0hb3dEqZRdSwG4/sknePXlE7GiarwA/9Wg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></link>
-        <h:outputStylesheet name="/admin/plugins/fontawesome-free/css/all.min.css"/>
         <h:outputStylesheet name="/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"/>
         <h:outputStylesheet name="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
-        <h:outputStylesheet name="/admin/plugins/jqvmap/jqvmap.min.css"/>
         <h:outputStylesheet name="/admin/dist/css/adminlte.min.css"/>
         <h:outputStylesheet name="/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
         <h:outputStylesheet name="/admin/plugins/daterangepicker/daterangepicker.css"/>
-        <h:outputStylesheet name="/admin/plugins/summernote/summernote-bs4.min.css"/>
         <h:outputStylesheet name="/admin/plugins/codemirror/codemirror.css"/>
         <h:outputStylesheet name="/admin/plugins/codemirror/theme/monokai.css"/>
         <h:outputStylesheet name="/admin/plugins/toastr/toastr.min.css"/>
@@ -263,6 +260,12 @@
                                     <p>Feedback Management</p>
                                 </h:link>
                             </li>
+                              <li class="nav-item">
+                                <h:link outcome="/admin/index.xhtml" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>Dien</p>
+                                </h:link>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -284,13 +287,10 @@
         <h:outputScript name="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"/>
         <h:outputScript name="/admin/plugins/chart.js/Chart.min.js"/>
         <h:outputScript name="/admin/plugins/sparklines/sparkline.js"/>
-        <h:outputScript name="/admin/plugins/jqvmap/jquery.vmap.min.js"/>
-        <h:outputScript name="/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"/>
         <h:outputScript name="/admin/plugins/jquery-knob/jquery.knob.min.js"/>
         <h:outputScript name="/admin/plugins/moment/moment.min.js"/>
         <h:outputScript name="/admin/plugins/daterangepicker/daterangepicker.js"/>
         <h:outputScript name="/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"/>
-        <h:outputScript name="/admin/plugins/summernote/summernote-bs4.min.js"/>
         <h:outputScript name="/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"/>
         <h:outputScript name="/admin/dist/js/adminlte.js"/>
         <h:outputScript name="/admin/dist/js/pages/dashboard.js"/>
@@ -302,8 +302,6 @@
         <h:outputScript name="/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"/>
         <h:outputScript name="/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"/>
         <h:outputScript name="/admin/plugins/jszip/jszip.min.js"/>
-        <h:outputScript name="/admin/plugins/pdfmake/pdfmake.min.js"/>
-        <h:outputScript name="/admin/plugins/pdfmake/vfs_fonts.js"/>
         <h:outputScript name="/admin/plugins/datatables-buttons/js/buttons.html5.min.js"/>
         <h:outputScript name="/admin/plugins/datatables-buttons/js/buttons.print.min.js"/>
         <h:outputScript name="/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"/>
