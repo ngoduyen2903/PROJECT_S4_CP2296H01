@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card card-success card-outline">
+                                    <div class="card-body box-profile">
+                                        <div class="text-center">
+                                            <img class="profile-user-img img-fluid img-circle"
+                                                 src="#{resource['/admin/dist/img/profile.png']}"
+                                                 alt="User profile picture"/>
+                                        </div>
+
+                                        <h3 class="profile-username text-center">Ngô Thị Cẩm Duyên</h3>
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item">
+                                                <b>Full Name:</b> <a class="float-right">Ngô Thị Cẩm Duyên</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Username</b> <a class="float-right">duyenngo2k2</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Password</b> <a class="float-right">******</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Address</b> <a class="float-right">Sóc Trăng</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Email</b> <a class="float-right">duyenngo@gmail.com</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Phone Number</b> <a class="float-right">0387090621</a>
+                                            </li>
+                                        </ul>
+                                        <a href="#" class="btn btn-success btn-block"><b>Change Password</b></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-header p-2">
+                                        <ul class="nav nav-pills">
+                                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">My Orders</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Update profile</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="active tab-pane" id="activity">
+                                                <div class="post">
+                                                    <div class="card-body">
+                                                        <table id="example1" class="table table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Order No.</th>
+                                                                    <th>Order Date</th>
+                                                                    <th>Product Name</th>
+                                                                    <th>Product Image</th>
+                                                                    <th>Total Price</th>
+                                                                    <th>Status</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>16/02/2023</td>
+                                                                    <td>Green Chair</td>
+                                                                    <td>This is image</td>
+                                                                    <td>$1000</td>
+                                                                    <td>
+                                                                        <span class="badge bg-danger">Processing</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <i class="fa fa-info-circle" title="View details"></i>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>16/02/2023</td>
+                                                                    <td>Green Chair</td>
+                                                                    <td>This is image</td>
+                                                                    <td>$1000</td>
+                                                                    <td>
+                                                                        <span class="badge bg-success">Confirmed</span>                                                                    </td>
+                                                                    <td>
+                                                                        <i class="fa fa-info-circle" title="View details"></i>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>16/02/2023</td>
+                                                                    <td>Green Chair</td>
+                                                                    <td>This is image</td>
+                                                                    <td>$1000</td>
+                                                                    <td>
+                                                                        <span class="badge bg-warning">Received</span>                                                                    </td>
+                                                                    <td>
+                                                                        <i class="fa fa-info-circle" title="View details"></i>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>16/02/2023</td>
+                                                                    <td>Green Chair</td>
+                                                                    <td>This is image</td>
+                                                                    <td>$1000</td>
+                                                                    <td>
+                                                                        <span class="badge bg-primary">Shipping</span>                                                                   </td>
+                                                                    <td>
+                                                                        <i class="fa fa-info-circle" title="View details"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="settings">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group row">
+                                                        <label for="inputName" class="col-sm-2 col-form-label">Full Name</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" class="form-control" id="inputName"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputName" class="col-sm-2 col-form-label">Username</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" class="form-control" id="inputName"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputName" class="col-sm-2 col-form-label">Password</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" class="form-control" id="inputName"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" class="form-control" id="inputEmail"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="inputName2" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputExperience" class="col-sm-2 col-form-label">Address</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea class="form-control" id="inputExperience"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-2 col-sm-10">
+                                                            <button type="submit" class="btn btn-success">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
