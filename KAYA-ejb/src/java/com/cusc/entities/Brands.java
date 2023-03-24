@@ -55,7 +55,7 @@ public class Brands implements Serializable {
     @Size(max = 20)
     @Column(name = "Website")
     private String website;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandID")
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "brandID")
     private Collection<Products> productsCollection;
 
     public Brands() {
@@ -134,7 +134,7 @@ public class Brands implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cusc.entities.Brands[ brandID=" + brandID + " ]";
+        return "Brands{" + "brandID=" + brandID + ", brandName=" + brandName + ", description=" + description + ", website=" + website + '}';
     }
-    
+
 }

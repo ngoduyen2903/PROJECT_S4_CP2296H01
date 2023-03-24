@@ -43,6 +43,16 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Products.findByStatus", query = "SELECT p FROM Products p WHERE p.status = :status")})
 public class Products implements Serializable {
 
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "UnitPrice")
+    private double unitPrice;
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "products")
+    private Collection<FeedbackDetails> feedbackDetailsCollection;
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "products")
+    private Collection<OrderDetails> orderDetailsCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -59,11 +69,6 @@ public class Products implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "Description")
     private String description;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "UnitPrice")
-    private BigDecimal unitPrice;
     @Size(max = 255)
     @Column(name = "Image")
     private String image;
@@ -88,9 +93,9 @@ public class Products implements Serializable {
     @JoinColumn(name = "SupplierID", referencedColumnName = "SupplierID")
     @ManyToOne(optional = false)
     private Suppliers supplierID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productID")
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "productID")
     private Collection<Promotions> promotionsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productID")
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "productID")
     private Collection<Feedbacks> feedbacksCollection;
 
     public Products() {
@@ -100,7 +105,7 @@ public class Products implements Serializable {
         this.productID = productID;
     }
 
-    public Products(Integer productID, String productName, String description, BigDecimal unitPrice, int quantity, int promotionStatus, int status) {
+    public Products(Integer productID, String productName, String description, double unitPrice, int quantity, int promotionStatus, int status) {
         this.productID = productID;
         this.productName = productName;
         this.description = description;
@@ -132,14 +137,6 @@ public class Products implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
     }
 
     public String getImage() {
@@ -238,7 +235,33 @@ public class Products implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cusc.entities.Products[ productID=" + productID + " ]";
+        return "Products{" + "productID=" + productID + ", productName=" + productName + ", description=" + description + ", unitPrice=" + unitPrice + ", image=" + image + ", quantity=" + quantity + ", promotionStatus=" + promotionStatus + ", status=" + status + ", brandID=" + brandID + ", categoryID=" + categoryID + ", supplierID=" + supplierID + '}';
     }
-    
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    @XmlTransient
+    public Collection<FeedbackDetails> getFeedbackDetailsCollection() {
+        return feedbackDetailsCollection;
+    }
+
+    public void setFeedbackDetailsCollection(Collection<FeedbackDetails> feedbackDetailsCollection) {
+        this.feedbackDetailsCollection = feedbackDetailsCollection;
+    }
+
+    @XmlTransient
+    public Collection<OrderDetails> getOrderDetailsCollection() {
+        return orderDetailsCollection;
+    }
+
+    public void setOrderDetailsCollection(Collection<OrderDetails> orderDetailsCollection) {
+        this.orderDetailsCollection = orderDetailsCollection;
+    }
+
 }

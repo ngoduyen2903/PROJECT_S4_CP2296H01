@@ -73,7 +73,7 @@ public class Suppliers implements Serializable {
     @NotNull
     @Column(name = "Status")
     private int status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplierID")
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "supplierID")
     private Collection<Products> productsCollection;
 
     public Suppliers() {
@@ -179,7 +179,6 @@ public class Suppliers implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cusc.entities.Suppliers[ supplierID=" + supplierID + " ]";
+        return "Suppliers{" + "supplierID=" + supplierID + ", companyName=" + companyName + ", phoneNumber=" + phoneNumber + ", address=" + address + ", email=" + email + ", website=" + website + ", status=" + status + '}';
     }
-    
 }
