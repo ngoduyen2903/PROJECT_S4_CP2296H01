@@ -2,75 +2,71 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
     </h:head>
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Employee Management</h3>
+                <h:form>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Employee Management</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Employee Management</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td>7</td>
-                                    <td>A</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="card">
+                        <div class="card-header">
+                            <h:commandLink class="btn btn-info btn-sm" action="/admin/addEmployee.xhtml"><i class="fas fa-plus"></i> Add</h:commandLink>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Username</th>
+                                        <th>Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{employeeMB.showAllEmployee()}" var="itemEmployee">
+                                        <tr>                                                     
+                                            <td><h:outputText value="#{itemEmployee.fullname}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.username}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.address}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.phoneNumber}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.email}"/></td>
+                                            <td><h:outputText value="#{itemEmployee.status}"/></td>
+                                            <td class="project-actions text-right">
+                                                <h:commandButton class="btn btn-primary btn-sm" value="View" type="button" onclick="PF('dlg2').show();" />&nbsp;
+                                                <h:commandLink class="btn btn-info btn-sm"><i class="fas fa-close"></i> </h:commandLink>&nbsp;
+                                                <h:commandLink class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> </h:commandLink>
+                                            </td>
+                                        </tr>  
+                                    </ui:repeat>                            
+                                </tbody>
+                            </table>
+                            <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+                                    <h:outputText value="#{employeeMB.employees.fullname}"/>
+                                    <h:outputText value="#{employeeMB.employees.username}"/>
+                                    <h:outputText value="#{employeeMB.employees.address}"/>
+                                    <h:outputText value="#{employeeMB.employees.phoneNumber}"/>
+                                    <h:outputText value="#{employeeMB.employees.email}"/>
+                                    <h:outputText value="#{employeeMB.employees.status}"/>
+                            </p:dialog> 
+                        </div>
                     </div>
-                </div>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

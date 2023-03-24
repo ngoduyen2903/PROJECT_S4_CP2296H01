@@ -51,7 +51,7 @@ public class Categories implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "Description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryID")
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "categoryID")
     private Collection<Products> productsCollection;
 
     public Categories() {
@@ -122,7 +122,9 @@ public class Categories implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cusc.entities.Categories[ categoryID=" + categoryID + " ]";
+        return "Categories{" + "categoryID=" + categoryID + ", categoryName=" + categoryName + ", description=" + description + '}';
     }
+
+
     
 }

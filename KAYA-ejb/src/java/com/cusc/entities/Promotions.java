@@ -7,7 +7,8 @@ package com.cusc.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,7 +55,7 @@ public class Promotions implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "PromotionDate")
-    @Temporal(TemporalType.DATE)
+    //  @Temporal(TemporalType.DATE)
     private Date promotionDate;
     @Basic(optional = false)
     @NotNull
@@ -64,7 +65,7 @@ public class Promotions implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "AmountApplyPromotion")
-    private BigDecimal amountApplyPromotion;
+    private double amountApplyPromotion;
     @Size(max = 255)
     @Column(name = "Note")
     private String note;
@@ -79,7 +80,7 @@ public class Promotions implements Serializable {
         this.promotionID = promotionID;
     }
 
-    public Promotions(Integer promotionID, String promotionName, Date promotionDate, int discount, BigDecimal amountApplyPromotion) {
+    public Promotions(Integer promotionID, String promotionName, Date promotionDate, int discount, double amountApplyPromotion) {
         this.promotionID = promotionID;
         this.promotionName = promotionName;
         this.promotionDate = promotionDate;
@@ -119,11 +120,11 @@ public class Promotions implements Serializable {
         this.discount = discount;
     }
 
-    public BigDecimal getAmountApplyPromotion() {
+    public double getAmountApplyPromotion() {
         return amountApplyPromotion;
     }
 
-    public void setAmountApplyPromotion(BigDecimal amountApplyPromotion) {
+    public void setAmountApplyPromotion(double amountApplyPromotion) {
         this.amountApplyPromotion = amountApplyPromotion;
     }
 
@@ -165,7 +166,7 @@ public class Promotions implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cusc.entities.Promotions[ promotionID=" + promotionID + " ]";
+        return "Promotions{" + "promotionID=" + promotionID + ", promotionName=" + promotionName + ", promotionDate=" + promotionDate + ", discount=" + discount + ", amountApplyPromotion=" + amountApplyPromotion + ", note=" + note + ", productID=" + productID + '}';
     }
-    
+
 }

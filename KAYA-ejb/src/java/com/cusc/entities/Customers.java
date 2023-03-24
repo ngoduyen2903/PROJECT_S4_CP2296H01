@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -65,7 +66,7 @@ public class Customers implements Serializable {
     private String address;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 13)
+    @Pattern(regexp = "0[0-9]{10}",message = "Phone must begin with 0 and must has 10 number")//kiem tra sdt bat dau tu 0 va co 10 so
     @Column(name = "PhoneNumber")
     private String phoneNumber;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -81,7 +82,7 @@ public class Customers implements Serializable {
     @NotNull
     @Column(name = "Status")
     private int status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
+    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "customerID")
     private Collection<Orders> ordersCollection;
 
     public Customers() {
@@ -203,7 +204,9 @@ public class Customers implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cusc.entities.Customers[ customerID=" + customerID + " ]";
+        return "Customers{" + "customerID=" + customerID + ", fullname=" + fullname + ", username=" + username + ", password=" + password + ", address=" + address + ", phoneNumber=" + phoneNumber + ", email=" + email + ", avatar=" + avatar + ", status=" + status + '}';
     }
+
+
     
 }
