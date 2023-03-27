@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <h:form enctype="multipart/form-data">
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Edit Brand</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="brandname">Brand ID: </label>
+                                                <h:inputText value="#{brandMB.brands.brandID}" styleClass="form-control" required = "true" id="brandname"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="brandname">Brand Name: </label>
+                                                <h:inputText value="#{brandMB.brands.brandName}" styleClass="form-control" required = "true" id="brandname"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Branddescription">Brand Description: </label>
+                                                <h:inputText value="#{brandMB.brands.description}" styleClass="form-control" required = "true" id="Branddescription"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="brandweb">Brand Web: </label>
+                                                <h:inputText value="#{brandMB.brands.website}"  styleClass="form-control" required = "true" id="brandweb"/>
+                                            </div>                                           
+                                        </div>
+                                        <div class="card-footer">
+                                            <h:commandLink type="submit" class="btn btn-success" action="#{brandMB.saveBrands(brandMB.brands.brandID)}" value="Submit"/>&nbsp;
+                                            <h:link outcome="/admin/brandList.xhtml" class="btn btn-danger">Back</h:link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

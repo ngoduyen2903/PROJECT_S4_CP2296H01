@@ -7,11 +7,12 @@ package com.cusc.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Promotions")
@@ -43,8 +44,8 @@ public class Promotions implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "PromotionID")
     private Integer promotionID;
     @Basic(optional = false)
@@ -55,7 +56,7 @@ public class Promotions implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "PromotionDate")
-    //  @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date promotionDate;
     @Basic(optional = false)
     @NotNull
@@ -65,7 +66,7 @@ public class Promotions implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "AmountApplyPromotion")
-    private double amountApplyPromotion;
+    private BigDecimal amountApplyPromotion;
     @Size(max = 255)
     @Column(name = "Note")
     private String note;
@@ -80,7 +81,7 @@ public class Promotions implements Serializable {
         this.promotionID = promotionID;
     }
 
-    public Promotions(Integer promotionID, String promotionName, Date promotionDate, int discount, double amountApplyPromotion) {
+    public Promotions(Integer promotionID, String promotionName, Date promotionDate, int discount, BigDecimal amountApplyPromotion) {
         this.promotionID = promotionID;
         this.promotionName = promotionName;
         this.promotionDate = promotionDate;
@@ -120,11 +121,11 @@ public class Promotions implements Serializable {
         this.discount = discount;
     }
 
-    public double getAmountApplyPromotion() {
+    public BigDecimal getAmountApplyPromotion() {
         return amountApplyPromotion;
     }
 
-    public void setAmountApplyPromotion(double amountApplyPromotion) {
+    public void setAmountApplyPromotion(BigDecimal amountApplyPromotion) {
         this.amountApplyPromotion = amountApplyPromotion;
     }
 
@@ -166,7 +167,7 @@ public class Promotions implements Serializable {
 
     @Override
     public String toString() {
-        return "Promotions{" + "promotionID=" + promotionID + ", promotionName=" + promotionName + ", promotionDate=" + promotionDate + ", discount=" + discount + ", amountApplyPromotion=" + amountApplyPromotion + ", note=" + note + ", productID=" + productID + '}';
+        return "com.cusc.entities.Promotions[ promotionID=" + promotionID + " ]";
     }
-
+    
 }

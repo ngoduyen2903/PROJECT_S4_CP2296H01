@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Categories")
@@ -37,8 +39,8 @@ public class Categories implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "CategoryID")
     private Integer categoryID;
     @Basic(optional = false)
@@ -51,7 +53,7 @@ public class Categories implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "Description")
     private String description;
-    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "categoryID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryID")
     private Collection<Products> productsCollection;
 
     public Categories() {
@@ -122,9 +124,7 @@ public class Categories implements Serializable {
 
     @Override
     public String toString() {
-        return "Categories{" + "categoryID=" + categoryID + ", categoryName=" + categoryName + ", description=" + description + '}';
+        return "com.cusc.entities.Categories[ categoryID=" + categoryID + " ]";
     }
-
-
     
 }
