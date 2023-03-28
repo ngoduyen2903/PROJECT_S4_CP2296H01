@@ -7,10 +7,16 @@ package com.mbeans;
 
 import com.cusc.entities.Employees;
 import com.cusc.sessions.EmployeesFacadeLocal;
+import com.sun.java.swing.plaf.windows.resources.windows;
+import com.sun.xml.rpc.processor.modeler.j2ee.xml.messageDestinationLinkType;
 import java.util.List;
+import java.util.Map;
+import javafx.scene.control.Alert;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.component.confirmdialog.ConfirmDialog;
 
 /**
  *
@@ -22,7 +28,7 @@ public class EmployeeMB {
 
     @EJB
     private EmployeesFacadeLocal employeesFacade;
-    private Long employeeID;
+    private Long empID;
     private String fullname;
     private String username;
     private String password;
@@ -32,23 +38,47 @@ public class EmployeeMB {
     private String status;
     private Employees employees;
 
+    
+
     public EmployeeMB() {
         employees = new Employees();
+    }
+
+    public String showProfile(String username) {
+        employees = employeesFacade.findByUsername(username);
+        Long id = employees.getEmployeeID();
+        employees = employeesFacade.find(id);
+        empID = employees.getEmployeeID();
+        return "profile";
+    }
+
+    public String saveUpdateEmployee() {
+        employeesFacade.edit(employees);
+        return "profile";
     }
 
     public List<Employees> showAllEmployee() {
         return employeesFacade.findAll();
     }
 
-//    public String showEmployeeDetails(Long id) {
-//        employees = employeesFacade.find(id);
-//        
-//        return "employeeList";
-//    }
+    public void showEmployeeDetails(Long id) {
+        employees = employeesFacade.find(id);
+        System.out.println("-----------------");
+    }
+
+    public String showEmployeeDetail_ver1(long id) {
+        employees = employeesFacade.find(id);
+        return "employeeList";
+    }
+
+    public String deleteEmployee(Long id) {
+        employeesFacade.remove(employeesFacade.find(id));
+        return "employeeList";
+    }
 
     public String createEmployee() {
         employeesFacade.create(employees);
-        return "addEmployee";
+        return "employeeList";
     }
 
     public Employees getEmployees() {
@@ -68,11 +98,11 @@ public class EmployeeMB {
     }
 
     public Long getEmployeeID() {
-        return employeeID;
+        return empID;
     }
 
     public void setEmployeeID(Long employeeID) {
-        this.employeeID = employeeID;
+        this.empID = employeeID;
     }
 
     public String getFullname() {

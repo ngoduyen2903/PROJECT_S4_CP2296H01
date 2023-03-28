@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content">
+                <h:form enctype="multipart/form-data">
+                  <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Promotion Management</h3>
+                        </div>
+                        <div class="card-body">
+                            <h:commandLink class="btn btn-info" action="/admin/addPromotion.xhtml"><i class="fas fa-plus"></i> Add</h:commandLink><br/>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Promotion Name</th>
+                                        <th>Date Apply Promotion</th>
+                                        <th>Discount (%)</th>
+                                        <th>Price after apply discount</th>
+                                        <th>Note</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{promotionMB.showAlPromotion()}" var="itemPromotion">
+                                        <tr>                                                     
+                                            <td width="100px"><h:outputText value="#{itemPromotion.promotionName}"/></td>
+                                            <td><h:outputText value="#{itemPromotion.promotionDate}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputText>
+                                            </td>
+                                            <td><h:outputText value="#{itemPromotion.discount}"/></td>
+                                            <td><h:outputText value="#{itemPromotion.amountApplyPromotion}"/></td>
+                                            <td><h:outputText value="#{itemPromotion.note}"/></td>
+                                            <td>
+                                                <h:commandButton class="btn btn-info btn-sm" value="View" type="button" onclick="PF('dlg2').show();" />&nbsp;
+                                            </td>
+                                        </tr>  
+                                    </ui:repeat>                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

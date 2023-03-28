@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/layouts/adminLayouts.xhtml">
+            <ui:define name="content"> 
+                <h:form id="quickForm" >
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-info">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Create Promotion Form</h3>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:outputLabel for="name" value="Promotion Name"/>
+                                        <h:inputText value="#{promotionMB.promotionName}" styleClass="form-control" required = "true" id="name" requiredMessage="This field cannot be empty!"/>
+                                        <h:message for = "name" style = "color: red;" />  
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="product" value="Product Name"/>
+                                        <h:selectOneMenu value="#{promotionMB.productID}" styleClass="form-control" class="form-control custom-select" style="width: 100%;">
+                                            <f:selectItems value="#{productMB.showAllProduct()}" var="itemP" itemLabel="#{itemP.productName}" itemValue="#{itemP.productID}" />
+                                        </h:selectOneMenu>
+                                    </div>
+
+                                    <h:outputLabel for="date" value="Date apply promotion"/>
+                                    <p:datePicker id="dateTemplate" value="#{calendarView.date5}" dateTemplate="dateTemplateFunc" />
+                                    <h:message for = "date" style = "color: red;" />  
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-info">
+                                    <div class="card-header">
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <h:outputLabel for="discount" value="Discount"/>
+                                            <h:inputSecret value="#{promotionMB.discount}"  styleClass="form-control" required = "true" id="discount" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "discount" style = "color: red;" /> 
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="priceafter" value="Price after apply promotion"/>
+                                            <h:inputText value="#{promotionMB.priceapplyPro}" styleClass="form-control" required = "true" id="priceafter" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "priceafter" style = "color: red;" />
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="note" value="Note"/>
+                                            <h:inputText value="#{promotionMB.note}" maxlength="11" styleClass="form-control" required = "true" id="note" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "note" style = "color: red;" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h:commandButton type="submit" class="btn btn-info" action="#{promotionMB.createPromotion()}" value="Submit"/>&nbsp;
+                                <h:link outcome="/admin/promotionList.xhtml" value="Back" class="btn btn-info"/>
+                            </div>
+                        </div>
+                    </section>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
