@@ -12,6 +12,8 @@ import java.sql.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -44,9 +46,10 @@ public class Promotions implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+//    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PromotionID")
-    private Integer promotionID;
+    private Long promotionID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -76,11 +79,11 @@ public class Promotions implements Serializable {
     public Promotions() {
     }
 
-    public Promotions(Integer promotionID) {
+    public Promotions(Long promotionID) {
         this.promotionID = promotionID;
     }
 
-    public Promotions(Integer promotionID, String promotionName, Date promotionDate, int discount, double amountApplyPromotion) {
+    public Promotions(Long promotionID, String promotionName, Date promotionDate, int discount, double amountApplyPromotion) {
         this.promotionID = promotionID;
         this.promotionName = promotionName;
         this.promotionDate = promotionDate;
@@ -88,11 +91,11 @@ public class Promotions implements Serializable {
         this.amountApplyPromotion = amountApplyPromotion;
     }
 
-    public Integer getPromotionID() {
+    public Long getPromotionID() {
         return promotionID;
     }
 
-    public void setPromotionID(Integer promotionID) {
+    public void setPromotionID(Long promotionID) {
         this.promotionID = promotionID;
     }
 

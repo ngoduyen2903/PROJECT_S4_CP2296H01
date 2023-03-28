@@ -125,6 +125,4 @@ public class Categories implements Serializable {
         return "Categories{" + "categoryID=" + categoryID + ", categoryName=" + categoryName + ", description=" + description + '}';
     }
 
-
-    
 }

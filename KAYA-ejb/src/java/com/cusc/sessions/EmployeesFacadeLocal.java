@@ -29,5 +29,10 @@ public interface EmployeesFacadeLocal {
     List<Employees> findRange(int[] range);
 
     int count();
-    
+
+    public boolean checkLoginEmployee(String username, String password);
+
+    Employees findByUsername(String username);
+
+    Long loginEmployee(String username, String password);
 }
