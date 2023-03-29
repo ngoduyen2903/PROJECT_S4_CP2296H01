@@ -204,13 +204,4 @@ public class Employees implements Serializable {
     public String toString() {
         return "com.cusc.entities.Employees[ employeeID=" + employeeID + " ]";
     }
-<<<<<<< HEAD
-
-    public void setStatus(String disabled) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-=======
-    
->>>>>>> Hung
 }

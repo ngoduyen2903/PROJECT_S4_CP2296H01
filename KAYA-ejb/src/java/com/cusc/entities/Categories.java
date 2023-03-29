@@ -126,9 +126,5 @@ public class Categories implements Serializable {
     public String toString() {
         return "com.cusc.entities.Categories[ categoryID=" + categoryID + " ]";
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> Hung
 }

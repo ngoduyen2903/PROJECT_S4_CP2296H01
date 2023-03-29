@@ -46,11 +46,6 @@ public class Promotions implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-<<<<<<< HEAD
-//    @NotNull
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-=======
->>>>>>> Hung
     @Column(name = "PromotionID")
     private Long promotionID;
     @Basic(optional = false)
@@ -71,7 +66,7 @@ public class Promotions implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "AmountApplyPromotion")
-    private BigDecimal amountApplyPromotion;
+    private double amountApplyPromotion;
     @Size(max = 255)
     @Column(name = "Note")
     private String note;
@@ -86,11 +81,9 @@ public class Promotions implements Serializable {
         this.promotionID = promotionID;
     }
 
-<<<<<<< HEAD
+
     public Promotions(Long promotionID, String promotionName, Date promotionDate, int discount, double amountApplyPromotion) {
-=======
-    public Promotions(Integer promotionID, String promotionName, Date promotionDate, int discount, BigDecimal amountApplyPromotion) {
->>>>>>> Hung
+
         this.promotionID = promotionID;
         this.promotionName = promotionName;
         this.promotionDate = promotionDate;
@@ -130,11 +123,11 @@ public class Promotions implements Serializable {
         this.discount = discount;
     }
 
-    public BigDecimal getAmountApplyPromotion() {
+    public double getAmountApplyPromotion() {
         return amountApplyPromotion;
     }
 
-    public void setAmountApplyPromotion(BigDecimal amountApplyPromotion) {
+    public void setAmountApplyPromotion(double amountApplyPromotion) {
         this.amountApplyPromotion = amountApplyPromotion;
     }
 
