@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Local
 public interface FeedbacksFacadeLocal {

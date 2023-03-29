@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Stateless
 public class EmployeesFacade extends AbstractFacade<Employees> implements EmployeesFacadeLocal {

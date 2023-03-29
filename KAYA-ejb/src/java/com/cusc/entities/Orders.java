@@ -7,13 +7,14 @@ package com.cusc.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.Collection;
-
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Orders")
@@ -46,29 +47,26 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status")})
 public class Orders implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "OrderDate")
-    // @Temporal(TemporalType.TIMESTAMP)
-    private Date orderDate;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "TotalPrice")
-    private double totalPrice;
-    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "orders")
-    private Collection<OrderDetails> orderDetailsCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "OrderID")
     private Integer orderID;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "OrderDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date orderDate;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "TotalAmount")
     private int totalAmount;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "TotalPrice")
+    private BigDecimal totalPrice;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -87,6 +85,8 @@ public class Orders implements Serializable {
     @JoinColumn(name = "EmployeeID", referencedColumnName = "EmployeeID")
     @ManyToOne(optional = false)
     private Employees employeeID;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
+    private Collection<OrderDetails> orderDetailsCollection;
 
     public Orders() {
     }
@@ -95,7 +95,7 @@ public class Orders implements Serializable {
         this.orderID = orderID;
     }
 
-    public Orders(Integer orderID, Date orderDate, int totalAmount, double totalPrice, String paymentMethod, int status) {
+    public Orders(Integer orderID, Date orderDate, int totalAmount, BigDecimal totalPrice, String paymentMethod, int status) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
@@ -112,12 +112,28 @@ public class Orders implements Serializable {
         this.orderID = orderID;
     }
 
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
     public int getTotalAmount() {
         return totalAmount;
     }
 
     public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getPaymentMethod() {
@@ -160,6 +176,15 @@ public class Orders implements Serializable {
         this.employeeID = employeeID;
     }
 
+    @XmlTransient
+    public Collection<OrderDetails> getOrderDetailsCollection() {
+        return orderDetailsCollection;
+    }
+
+    public void setOrderDetailsCollection(Collection<OrderDetails> orderDetailsCollection) {
+        this.orderDetailsCollection = orderDetailsCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -182,32 +207,7 @@ public class Orders implements Serializable {
 
     @Override
     public String toString() {
-        return "Orders{" + "orderID=" + orderID + ", orderDate=" + orderDate + ", totalAmount=" + totalAmount + ", totalPrice=" + totalPrice + ", paymentMethod=" + paymentMethod + ", note=" + note + ", status=" + status + ", customerID=" + customerID + ", employeeID=" + employeeID + '}';
+        return "com.cusc.entities.Orders[ orderID=" + orderID + " ]";
     }
-
-    public java.util.Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    @XmlTransient
-    public Collection<OrderDetails> getOrderDetailsCollection() {
-        return orderDetailsCollection;
-    }
-
-    public void setOrderDetailsCollection(Collection<OrderDetails> orderDetailsCollection) {
-        this.orderDetailsCollection = orderDetailsCollection;
-    }
-
+    
 }

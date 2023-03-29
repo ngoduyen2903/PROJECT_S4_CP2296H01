@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Brands")
@@ -38,8 +40,8 @@ public class Brands implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "BrandID")
     private Integer brandID;
     @Basic(optional = false)
@@ -55,7 +57,7 @@ public class Brands implements Serializable {
     @Size(max = 20)
     @Column(name = "Website")
     private String website;
-    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "brandID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandID")
     private Collection<Products> productsCollection;
 
     public Brands() {
@@ -134,7 +136,7 @@ public class Brands implements Serializable {
 
     @Override
     public String toString() {
-        return "Brands{" + "brandID=" + brandID + ", brandName=" + brandName + ", description=" + description + ", website=" + website + '}';
+        return "com.cusc.entities.Brands[ brandID=" + brandID + " ]";
     }
-
+    
 }

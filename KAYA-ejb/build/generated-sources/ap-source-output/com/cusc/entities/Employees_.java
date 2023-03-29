@@ -6,14 +6,18 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
+<<<<<<< HEAD
 @Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-28T13:16:51")
+=======
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-27T22:11:38")
+>>>>>>> Hung
 @StaticMetamodel(Employees.class)
 public class Employees_ { 
 
     public static volatile SingularAttribute<Employees, String> password;
     public static volatile SingularAttribute<Employees, String> address;
     public static volatile SingularAttribute<Employees, String> phoneNumber;
-    public static volatile SingularAttribute<Employees, Long> employeeID;
+    public static volatile SingularAttribute<Employees, Integer> employeeID;
     public static volatile SingularAttribute<Employees, String> fullname;
     public static volatile CollectionAttribute<Employees, Orders> ordersCollection;
     public static volatile SingularAttribute<Employees, String> email;

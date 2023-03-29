@@ -6,13 +6,14 @@
 package com.cusc.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.Collection;
-
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Feedbacks")
@@ -39,20 +40,19 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Feedbacks.findByCreationDate", query = "SELECT f FROM Feedbacks f WHERE f.creationDate = :creationDate")})
 public class Feedbacks implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "FeedbackID")
+    private Integer feedbackID;
     @Basic(optional = false)
     @NotNull
     @Column(name = "CreationDate")
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    @OneToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE}, mappedBy = "feedbacks")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "feedbacks")
     private Collection<FeedbackDetails> feedbackDetailsCollection;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "FeedbackID")
-    private Integer feedbackID;
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
     @ManyToOne(optional = false)
     private Products productID;
@@ -77,6 +77,22 @@ public class Feedbacks implements Serializable {
         this.feedbackID = feedbackID;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    @XmlTransient
+    public Collection<FeedbackDetails> getFeedbackDetailsCollection() {
+        return feedbackDetailsCollection;
+    }
+
+    public void setFeedbackDetailsCollection(Collection<FeedbackDetails> feedbackDetailsCollection) {
+        this.feedbackDetailsCollection = feedbackDetailsCollection;
+    }
 
     public Products getProductID() {
         return productID;
@@ -108,26 +124,7 @@ public class Feedbacks implements Serializable {
 
     @Override
     public String toString() {
-        return "Feedbacks{" + "feedbackID=" + feedbackID + ", creationDate=" + creationDate + ", productID=" + productID + '}';
+        return "com.cusc.entities.Feedbacks[ feedbackID=" + feedbackID + " ]";
     }
-
-    public java.util.Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    @XmlTransient
-    public Collection<FeedbackDetails> getFeedbackDetailsCollection() {
-        return feedbackDetailsCollection;
-    }
-
-    public void setFeedbackDetailsCollection(Collection<FeedbackDetails> feedbackDetailsCollection) {
-        this.feedbackDetailsCollection = feedbackDetailsCollection;
-    }
-
-
     
 }
