@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Employees")
@@ -45,11 +45,10 @@ public class Employees implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-//    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "EmployeeID")
-    private Long employeeID;
+    private Integer employeeID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -85,7 +84,7 @@ public class Employees implements Serializable {
     @NotNull
     @Column(name = "Status")
     private int status;
-    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "employeeID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeID")
     private Collection<Orders> ordersCollection;
 
    
@@ -93,11 +92,11 @@ public class Employees implements Serializable {
     public Employees() {
     }
 
-    public Employees(Long employeeID) {
+    public Employees(Integer employeeID) {
         this.employeeID = employeeID;
     }
 
-    public Employees(Long employeeID, String fullname, String username, String password, String address, String phoneNumber, String email, int status) {
+    public Employees(Integer employeeID, String fullname, String username, String password, String address, String phoneNumber, String email, int status) {
         this.employeeID = employeeID;
         this.fullname = fullname;
         this.username = username;
@@ -108,11 +107,11 @@ public class Employees implements Serializable {
         this.status = status;
     }
 
-    public Long getEmployeeID() {
+    public Integer getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(Long employeeID) {
+    public void setEmployeeID(Integer employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -203,11 +202,6 @@ public class Employees implements Serializable {
 
     @Override
     public String toString() {
-        return "Employees{" + "employeeID=" + employeeID + ", fullname=" + fullname + ", username=" + username + ", password=" + password + ", address=" + address + ", phoneNumber=" + phoneNumber + ", email=" + email + ", status=" + status + '}';
+        return "com.cusc.entities.Employees[ employeeID=" + employeeID + " ]";
     }
-
-    public void setStatus(String disabled) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

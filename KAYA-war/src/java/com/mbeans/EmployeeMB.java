@@ -28,7 +28,7 @@ public class EmployeeMB {
 
     @EJB
     private EmployeesFacadeLocal employeesFacade;
-    private Long empID;
+    private Integer empID;
     private String fullname;
     private String username;
     private String password;
@@ -46,7 +46,7 @@ public class EmployeeMB {
 
     public String showProfile(String username) {
         employees = employeesFacade.findByUsername(username);
-        Long id = employees.getEmployeeID();
+        Integer id = employees.getEmployeeID();
         employees = employeesFacade.find(id);
         empID = employees.getEmployeeID();
         return "profile";
@@ -97,11 +97,11 @@ public class EmployeeMB {
         this.employeesFacade = employeesFacade;
     }
 
-    public Long getEmployeeID() {
+    public Integer getEmployeeID() {
         return empID;
     }
 
-    public void setEmployeeID(Long employeeID) {
+    public void setEmployeeID(Integer employeeID) {
         this.empID = employeeID;
     }
 

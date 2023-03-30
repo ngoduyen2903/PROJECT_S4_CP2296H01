@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Suppliers")
@@ -41,8 +43,8 @@ public class Suppliers implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "SupplierID")
     private Integer supplierID;
     @Basic(optional = false)
@@ -73,7 +75,7 @@ public class Suppliers implements Serializable {
     @NotNull
     @Column(name = "Status")
     private int status;
-    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "supplierID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplierID")
     private Collection<Products> productsCollection;
 
     public Suppliers() {
@@ -179,6 +181,7 @@ public class Suppliers implements Serializable {
 
     @Override
     public String toString() {
-        return "Suppliers{" + "supplierID=" + supplierID + ", companyName=" + companyName + ", phoneNumber=" + phoneNumber + ", address=" + address + ", email=" + email + ", website=" + website + ", status=" + status + '}';
+        return "com.cusc.entities.Suppliers[ supplierID=" + supplierID + " ]";
     }
+    
 }

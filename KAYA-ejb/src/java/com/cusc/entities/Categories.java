@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Categories")
@@ -40,9 +40,8 @@ public class Categories implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-//    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "CategoryID")
     private Long categoryID;
     @Basic(optional = false)
@@ -55,7 +54,7 @@ public class Categories implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "Description")
     private String description;
-    @OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}, mappedBy = "categoryID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryID")
     private Collection<Products> productsCollection;
 
     public Categories() {
@@ -126,7 +125,7 @@ public class Categories implements Serializable {
 
     @Override
     public String toString() {
-        return "Categories{" + "categoryID=" + categoryID + ", categoryName=" + categoryName + ", description=" + description + '}';
+        return "com.cusc.entities.Categories[ categoryID=" + categoryID + " ]";
     }
 
 }

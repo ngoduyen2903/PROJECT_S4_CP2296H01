@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "OrderDetails")
@@ -45,7 +45,7 @@ public class OrderDetails implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "UnitPrice")
-    private double unitPrice;
+    private BigDecimal unitPrice;
     @JoinColumn(name = "OrderID", referencedColumnName = "OrderID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Orders orders;
@@ -60,7 +60,7 @@ public class OrderDetails implements Serializable {
         this.orderDetailsPK = orderDetailsPK;
     }
 
-    public OrderDetails(OrderDetailsPK orderDetailsPK, int quantity, double unitPrice) {
+    public OrderDetails(OrderDetailsPK orderDetailsPK, int quantity, BigDecimal unitPrice) {
         this.orderDetailsPK = orderDetailsPK;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
@@ -86,11 +86,11 @@ public class OrderDetails implements Serializable {
         this.quantity = quantity;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 

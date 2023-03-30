@@ -7,8 +7,7 @@ package com.cusc.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author odieng
+ * @author huynh
  */
 @Entity
 @Table(name = "Promotions")
@@ -45,9 +44,8 @@ public class Promotions implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-//    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "PromotionID")
     private Long promotionID;
     @Basic(optional = false)
@@ -58,7 +56,7 @@ public class Promotions implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "PromotionDate")
-    //  @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date promotionDate;
     @Basic(optional = false)
     @NotNull
@@ -83,7 +81,9 @@ public class Promotions implements Serializable {
         this.promotionID = promotionID;
     }
 
+
     public Promotions(Long promotionID, String promotionName, Date promotionDate, int discount, double amountApplyPromotion) {
+
         this.promotionID = promotionID;
         this.promotionName = promotionName;
         this.promotionDate = promotionDate;
@@ -169,7 +169,7 @@ public class Promotions implements Serializable {
 
     @Override
     public String toString() {
-        return "Promotions{" + "promotionID=" + promotionID + ", promotionName=" + promotionName + ", promotionDate=" + promotionDate + ", discount=" + discount + ", amountApplyPromotion=" + amountApplyPromotion + ", note=" + note + ", productID=" + productID + '}';
+        return "com.cusc.entities.Promotions[ promotionID=" + promotionID + " ]";
     }
-
+    
 }
