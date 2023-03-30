@@ -9,12 +9,15 @@ import com.cusc.entities.Employees;
 import com.cusc.sessions.EmployeesFacadeLocal;
 import com.sun.java.swing.plaf.windows.resources.windows;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.messageDestinationLinkType;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javafx.scene.control.Alert;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.confirmdialog.ConfirmDialog;
 
@@ -38,9 +41,31 @@ public class EmployeeMB {
     private String status;
     private Employees employees;
 
-    
+    List<Employees> list;
+
+    public void confirm(long id) throws IOException {
+
+        Employees employees = employeesFacade.find(id);
+        employeesFacade.remove(employees);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/KAYA-war/faces/admin/employeeList.xhtml");
+        addMessage("Confirmed", "You have accepted");
+    }
+
+    public String reloadPage() {
+        return "employeeList";
+    }
+
+    public void delete() {
+        addMessage("Confirmed", "Record deleted");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
     public EmployeeMB() {
+        list = new ArrayList<>();
         employees = new Employees();
     }
 
@@ -58,7 +83,8 @@ public class EmployeeMB {
     }
 
     public List<Employees> showAllEmployee() {
-        return employeesFacade.findAll();
+        list = employeesFacade.findAll();
+        return list;
     }
 
     public void showEmployeeDetails(Long id) {

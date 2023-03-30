@@ -11,8 +11,8 @@
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
-                <h:form enctype="multipart/form-data">
-                  <div class="card card-info">
+                <h:form enctype="multipart/form-data" id="form">
+                    <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Promotion Management</h3>
                         </div>
@@ -24,27 +24,32 @@
                                 <thead>
                                     <tr>
                                         <th>Promotion Name</th>
+                                        <th>Product Name</th>
                                         <th>Date Apply Promotion</th>
                                         <th>Discount (%)</th>
-                                        <th>Price after apply discount</th>
+                                        <th>Price After Apply Discount</th>
                                         <th>Note</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <ui:repeat value="#{promotionMB.showAlPromotion()}" var="itemPromotion">
                                         <tr>                                                     
-                                            <td width="100px"><h:outputText value="#{itemPromotion.promotionName}"/></td>
-                                            <td><h:outputText value="#{itemPromotion.promotionDate}">
+                                            <td><h:outputText value="#{itemPromotion.promotionName}"/></td>
+                                            <td>
+                                                <h:outputText value="#{itemPromotion.productID.productName}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{itemPromotion.promotionDate}">
                                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                 </h:outputText>
                                             </td>
+
                                             <td><h:outputText value="#{itemPromotion.discount}"/></td>
-                                            <td><h:outputText value="#{itemPromotion.amountApplyPromotion}"/></td>
-                                            <td><h:outputText value="#{itemPromotion.note}"/></td>
-                                            <td>
-                                                <h:commandButton class="btn btn-info btn-sm" value="View" type="button" onclick="PF('dlg2').show();" />&nbsp;
+                                            <td><h:outputText value="#{itemPromotion.amountApplyPromotion}">
+                                                    <f:convertNumber currencySymbol="$" type="currency" />
+                                                </h:outputText>
                                             </td>
+                                            <td><h:outputText value="#{itemPromotion.note}"/></td>
                                         </tr>  
                                     </ui:repeat>                                  
                                 </tbody>

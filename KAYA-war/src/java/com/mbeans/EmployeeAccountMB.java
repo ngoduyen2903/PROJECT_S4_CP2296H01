@@ -19,20 +19,23 @@ import javax.ejb.EJB;
 @Named(value = "employeeAccountMB")
 @SessionScoped
 public class EmployeeAccountMB implements Serializable {
-    
+
     @EJB
     private EmployeesFacadeLocal employeesFacade;
-    
+
     private boolean enabled = true;
-    
+
+    public EmployeeAccountMB() {
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
-    
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-    
+
     public String toggleEnabled(long id) {
         Employees emp = employeesFacade.find(id);
         if (emp.getStatus() == 0) {
@@ -43,8 +46,5 @@ public class EmployeeAccountMB implements Serializable {
         employeesFacade.edit(emp);
         return "employeeList";
     }
-    
-    public EmployeeAccountMB() {
-    }
-    
+
 }

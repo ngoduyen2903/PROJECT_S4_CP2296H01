@@ -1,12 +1,12 @@
 package com.cusc.entities;
 
 import com.cusc.entities.Products;
-import java.sql.Date;
+import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-28T13:16:51")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-29T13:44:37")
 @StaticMetamodel(Promotions.class)
 public class Promotions_ { 
 

@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+
     </h:head>
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
@@ -16,30 +17,34 @@
                             <div class="col-md-6">
                                 <div class="card card-info">
                                     <div class="card-header">
-                                        <h3 class="card-title">Create Promotion Form</h3>
+                                        <h3 class="card-title">Create Promotion</h3>
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                             </button>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <h:outputLabel for="name" value="Promotion Name"/>
-                                        <h:inputText value="#{promotionMB.promotionName}" styleClass="form-control" required = "true" id="name" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "name" style = "color: red;" />  
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <h:outputLabel for="name" value="Promotion Name"/>
+                                            <h:inputText value="#{promotionMB.promotions.promotionName}" styleClass="form-control" required = "true" id="name" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "name" style = "color: red;" />  
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="productname" value="Product Name"/>
+                                            <h:selectOneMenu  id="productname" value="#{promotionMB.productID}" styleClass="form-control" class="form-control custom-select" style="width: 100%;">
+                                                <f:selectItems value="#{productMB.showAllProduct()}" var="itemP" itemLabel="#{itemP.productName}" itemValue="#{itemP.productID}" />
+                                                <f:ajax event="change" listener="#{promotionMB.loadPrice()}" render="priceafter" />
+                                            </h:selectOneMenu>
+                                            <h:message for = "productname" style = "color: red;" /> 
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputLabel for="dateTemplate" value="Promotion Date"/>
+                                            <h:inputText value="#{promotionMB.promotions.promotionDate}" styleClass="form-control" required = "true" id="date" requiredMessage="This field cannot be empty!">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:inputText>
+                                            <h:message for = "date" style = "color: red;" /> 
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <h:outputLabel for="product" value="Product Name"/>
-                                        <h:selectOneMenu value="#{promotionMB.productID}" styleClass="form-control" class="form-control custom-select" style="width: 100%;">
-                                            <f:selectItems value="#{productMB.showAllProduct()}" var="itemP" itemLabel="#{itemP.productName}" itemValue="#{itemP.productID}" />
-                                        </h:selectOneMenu>
-                                    </div>
-
-                                    <h:outputLabel for="date" value="Date apply promotion"/>
-                                    <p:datePicker id="dateTemplate" value="#{calendarView.date5}" dateTemplate="dateTemplateFunc" />
-                                    <h:message for = "date" style = "color: red;" />  
-
-
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -53,18 +58,12 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <h:outputLabel for="discount" value="Discount"/>
-                                            <h:inputSecret value="#{promotionMB.discount}"  styleClass="form-control" required = "true" id="discount" requiredMessage="This field cannot be empty!"/>
-                                            <h:message for = "discount" style = "color: red;" /> 
-                                        </div>
-                                        <div class="form-group">
-                                            <h:outputLabel for="priceafter" value="Price after apply promotion"/>
-                                            <h:inputText value="#{promotionMB.priceapplyPro}" styleClass="form-control" required = "true" id="priceafter" requiredMessage="This field cannot be empty!"/>
-                                            <h:message for = "priceafter" style = "color: red;" />
+                                            <h:inputText value="#{promotionMB.promotions.discount}"  styleClass="form-control" required = "true" id="discount" requiredMessage="This field cannot be empty!"/>
+                                            <h:message for = "discount" style = "color: red;" />
                                         </div>
                                         <div class="form-group">
                                             <h:outputLabel for="note" value="Note"/>
-                                            <h:inputText value="#{promotionMB.note}" maxlength="11" styleClass="form-control" required = "true" id="note" requiredMessage="This field cannot be empty!"/>
-                                            <h:message for = "note" style = "color: red;" /> 
+                                            <h:inputTextarea id="note" value="#{promotionMB.promotions.note}" rows="5" cols="20" styleClass="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -76,6 +75,9 @@
                                 <h:link outcome="/admin/promotionList.xhtml" value="Back" class="btn btn-info"/>
                             </div>
                         </div>
+                        <br/>
+
+
                     </section>
                 </h:form>
             </ui:define>
