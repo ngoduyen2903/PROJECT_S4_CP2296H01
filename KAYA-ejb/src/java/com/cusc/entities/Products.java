@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -57,8 +59,9 @@ public class Products implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ProductID")
-    private Integer productID;
+    private Long productID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -101,11 +104,11 @@ public class Products implements Serializable {
     public Products() {
     }
 
-    public Products(Integer productID) {
+    public Products(Long productID) {
         this.productID = productID;
     }
 
-    public Products(Integer productID, String productName, String description, double unitPrice, int quantity, int promotionStatus, int status) {
+    public Products(Long productID, String productName, String description, double unitPrice, int quantity, int promotionStatus, int status) {
         this.productID = productID;
         this.productName = productName;
         this.description = description;
@@ -115,11 +118,11 @@ public class Products implements Serializable {
         this.status = status;
     }
 
-    public Integer getProductID() {
+    public Long getProductID() {
         return productID;
     }
 
-    public void setProductID(Integer productID) {
+    public void setProductID(Long productID) {
         this.productID = productID;
     }
 

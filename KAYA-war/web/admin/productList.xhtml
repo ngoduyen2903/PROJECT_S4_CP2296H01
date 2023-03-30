@@ -8,89 +8,109 @@
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Product Management</h1>
+                 <h:form>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Category Management</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Product Management</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Product Management</li>
-                        </ol>
+                    <div class="card">
+                        <div class="card-header">
+                            <h:commandLink class="btn btn-info btn-sm" action="#{productMB.saveUpdateProducts()}">
+                                <i class="fas fa-plus"></i>Add
+                            </h:commandLink>                   
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Description</th>
+                                        <th>Category ID</th>
+                                        <th>Supplier ID</th>
+                                        <th>Branch ID</th>
+                                        <th>Unit Price</th>
+                                        <th>Image</th>
+                                        <th>Quantity</th>
+                                        <th>Promotion Status</th>
+                                        <th>Status</th>  
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                              
+                                    <ui:repeat value="#{productMB.showAllProduct()}" var="itemproduct">
+                                        <tr>                                                     
+                                            <td width="100px"><h:outputText value="#{itemproduct.productName}"/></td>
+                                            <td><h:outputText value="#{itemproduct.description}"/></td>
+                                            <td><h:outputText value="#{itemproduct.categoryID}"/></td>
+                                            <td><h:outputText value="#{itemproduct.supplierID}"/></td>
+                                            <td><h:outputText value="#{itemproduct.brandID}"/></td>
+                                            <td><h:outputText value="#{itemproduct.unitPrice}"/></td>
+                                            <td><h:outputText value="#{itemproduct.image}"/></td>
+                                            <td><h:outputText value="#{itemproduct.quantity}"/></td>
+                                            <td><h:outputText value="#{itemproduct.promotionStatus}"/></td>
+                                            <td><h:outputText value="#{itemproduct.status}"/></td>
+                                            <td>
+                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalBootstrap" >
+                                                    #{productMB.showUpdate(itemproduct.productID)} Update
+                                                </a>&nbsp;
+
+                                                <h:commandButton class="btn btn-info btn-sm" id="deleteButton" value="Delete" action="#{categoryMB.deleteCategory(itemCategory.categoryID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
+                                                            return false;
+                                                        }
+                                                        ;
+                                                        return true;"/>
+
+                                            </td>
+                                        </tr>  
+                                    </ui:repeat>                               
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                       <h:link class="btn btn-info btn-sm" outcome="/admin/addCategory.xhtml">
-                            <i class="fas fa-plus"></i>Add
-                        </h:link>                    
+                    <div class="modal fade" id="modalBootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                </div>
+                                <section class="content">
+                                    <div class="col">
+                                            <div class="card card-info">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <h:inputHidden value="#{categoryMB.categories.categoryID}"/>
+                                                        <h:outputLabel for="categeryname" value="Category Name *"/>
+                                                        <h:inputText value="#{categoryMB.categories.categoryName}" styleClass="form-control" required = "true" id="fullname" requiredMessage="This field cannot be empty!"/>
+                                                        <h:message for = "categeryname" style = "color: red;" /> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel for="description" value="Description *"/>
+                                                        <h:inputText value="#{categoryMB.categories.description}" styleClass="form-control" required = "true" id="username" requiredMessage="This field cannot be empty!"/>
+                                                        <h:message for = "description" style = "color: red;" /> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="col-12">
+                                            <h:commandButton type="submit" class="btn btn-info" action="#{categoryMB.saveUpdateCategory()}" value="Submit"/>&nbsp;
+                                        </div>
+                                    </div>
+                                </section>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td class="project-actions text-right">
-                                        <a class="btn btn-primary btn-sm" href="#">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
-                                        <a class="btn btn-info btn-sm" href="#">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td class="project-actions text-right">
-                                        <a class="btn btn-primary btn-sm" href="#">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View
-                                        </a>
-                                        <a class="btn btn-info btn-sm" href="#">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
