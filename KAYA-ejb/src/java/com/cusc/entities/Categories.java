@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,7 +43,7 @@ public class Categories implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CategoryID")
-    private Integer categoryID;
+    private Long categoryID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -59,21 +60,21 @@ public class Categories implements Serializable {
     public Categories() {
     }
 
-    public Categories(Integer categoryID) {
+    public Categories(Long categoryID) {
         this.categoryID = categoryID;
     }
 
-    public Categories(Integer categoryID, String categoryName, String description) {
+    public Categories(Long categoryID, String categoryName, String description) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.description = description;
     }
 
-    public Integer getCategoryID() {
+    public Long getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(Integer categoryID) {
+    public void setCategoryID(Long categoryID) {
         this.categoryID = categoryID;
     }
 

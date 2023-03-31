@@ -47,10 +47,11 @@ public class Products implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "ProductID")
-    private Integer productID;
+    private Long productID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -65,7 +66,7 @@ public class Products implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "UnitPrice")
-    private BigDecimal unitPrice;
+    private double unitPrice;
     @Size(max = 255)
     @Column(name = "Image")
     private String image;
@@ -102,11 +103,13 @@ public class Products implements Serializable {
     public Products() {
     }
 
-    public Products(Integer productID) {
+    public Products(Long productID) {
         this.productID = productID;
     }
 
-    public Products(Integer productID, String productName, String description, BigDecimal unitPrice, int quantity, int promotionStatus, int status) {
+
+    public Products(Long productID, String productName, String description, double unitPrice, int quantity, int promotionStatus, int status) {
+
         this.productID = productID;
         this.productName = productName;
         this.description = description;
@@ -116,11 +119,11 @@ public class Products implements Serializable {
         this.status = status;
     }
 
-    public Integer getProductID() {
+    public Long getProductID() {
         return productID;
     }
 
-    public void setProductID(Integer productID) {
+    public void setProductID(Long productID) {
         this.productID = productID;
     }
 
@@ -140,11 +143,11 @@ public class Products implements Serializable {
         this.description = description;
     }
 
-    public BigDecimal getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
