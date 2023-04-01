@@ -2,3 +2,5 @@
 /build/
 /KAYA-war/dist/
 /KAYA-ejb/dist/
+/KAYA-ejb/build/
+/KAYA-war/build/
