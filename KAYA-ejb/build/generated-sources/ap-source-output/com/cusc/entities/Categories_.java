@@ -6,17 +6,13 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-<<<<<<< HEAD
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-28T13:16:51")
-=======
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-27T22:11:38")
->>>>>>> Hung
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-03-31T16:11:46")
 @StaticMetamodel(Categories.class)
 public class Categories_ { 
 
     public static volatile CollectionAttribute<Categories, Products> productsCollection;
     public static volatile SingularAttribute<Categories, String> description;
     public static volatile SingularAttribute<Categories, String> categoryName;
-    public static volatile SingularAttribute<Categories, Integer> categoryID;
+    public static volatile SingularAttribute<Categories, Long> categoryID;
 
 }
