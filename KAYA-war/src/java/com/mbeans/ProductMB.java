@@ -5,9 +5,14 @@
  */
 package com.mbeans;
 
+import com.cusc.entities.Customers;
+import com.cusc.entities.Employees;
 import com.cusc.entities.Products;
+import com.cusc.sessions.CustomersFacadeLocal;
+import com.cusc.sessions.EmployeesFacadeLocal;
 import com.cusc.sessions.ProductsFacadeLocal;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +25,13 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class ProductMB {
 
-    @EJB    
+    @EJB
+    private EmployeesFacadeLocal employeesFacade;
+
+    @EJB
+    private CustomersFacadeLocal customersFacade;
+
+    @EJB
     private ProductsFacadeLocal productsFacade;
     private Long proID;
     private String productName;
@@ -34,9 +45,28 @@ public class ProductMB {
     private String promotionStatus;
     private String status;
     private Products products;
+
     /**
      * Creates a new instance of ProductMN
      */
+    //test login
+    @PostConstruct
+    public void init() {
+        //dau tien phai check customer
+        Customers customer = customersFacade.loadByUsername("duyenngo", "duyengo");
+        //tiep check mk =>> cai nay luc viet truy van co the dung chung nhung tui lo lam rieng
+        if (customer != null) { //customer != null la da lay dc customer
+            System.out.println("Login Customer ss");
+        } else {
+            Employees emp = employeesFacade.loadByUsername("duyenngo", "");
+            if (emp != null) {
+                System.out.println("Login Employee SS");
+            }
+        }
+        //neu kh do cai if ow tren thi la login fail
+        System.out.println("Login fail");
+    }
+
     public ProductMB() {
         products = new Products();
     }
@@ -55,8 +85,8 @@ public class ProductMB {
         products = null;
         return "addProduct";
     }
-    
-     public String deleteProducts(Long id) {
+
+    public String deleteProducts(Long id) {
         productsFacade.remove(productsFacade.find(id));
         return "productList";
     }
@@ -65,11 +95,12 @@ public class ProductMB {
         productsFacade.create(products);
         return "productList";
     }
+
     /**
      *
      * @return
      */
-    public List<Products> showAllProduct(){
+    public List<Products> showAllProduct() {
         return productsFacade.findAll();
     }
 

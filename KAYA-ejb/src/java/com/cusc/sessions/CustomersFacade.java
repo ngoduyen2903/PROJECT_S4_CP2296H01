@@ -9,6 +9,10 @@ import com.cusc.entities.Customers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -28,5 +32,18 @@ public class CustomersFacade extends AbstractFacade<Customers> implements Custom
     public CustomersFacade() {
         super(Customers.class);
     }
+
+    @Override
+    public Customers loadByUsername(String username, String password) {
+         CriteriaBuilder cb = em.getCriteriaBuilder();
+         CriteriaQuery cq = cb.createQuery();
+         Root root = cq.from(Customers.class);
+         cq.select(root);
+         cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("status"), "1")));
+         Query query = em.createQuery(cq);
+         return (Customers) query.getSingleResult();
+    }
+    
+    
     
 }

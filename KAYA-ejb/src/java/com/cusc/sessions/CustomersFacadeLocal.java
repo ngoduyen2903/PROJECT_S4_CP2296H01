@@ -30,4 +30,6 @@ public interface CustomersFacadeLocal {
 
     int count();
     
+    Customers loadByUsername(String username,String password);
+    
 }

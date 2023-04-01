@@ -33,30 +33,35 @@ public class BrandMB {
     }
 
     public List<Brands> showAllBrands() {
-       return brandsFacade.findAll();
+        return brandsFacade.findAll();
     }
 
-    public String createBrands(){
+    public String createBrands() {
         brandsFacade.create(brands);
         return "brandList";
     }
-    
-    public String deleteBrands(Integer id){
+
+    public String deleteBrands(Integer id) {
         Brands d = brandsFacade.find(id);
         brandsFacade.remove(d);
         return "brandList";
     }
-    
-    public String editBrands(Integer id){
+
+    public String editBrands(Integer id) {
         brands = brandsFacade.find(id);
-        return "editBrand";
+        return "";
     }
-    
-        public String saveBrands(Integer id){
+
+    public String saveBrands() {
         brandsFacade.edit(brands);
         return "brandList";
     }
-    
+
+    public String showAddForm() {
+        brands = null;
+        return "addBrand";
+    }
+
     public Integer getBrandID() {
         return brandID;
     }

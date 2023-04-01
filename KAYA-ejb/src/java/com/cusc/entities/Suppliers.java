@@ -46,7 +46,7 @@ public class Suppliers implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "SupplierID")
-    private Integer supplierID;
+    private Long supplierID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -81,11 +81,11 @@ public class Suppliers implements Serializable {
     public Suppliers() {
     }
 
-    public Suppliers(Integer supplierID) {
+    public Suppliers(Long supplierID) {
         this.supplierID = supplierID;
     }
 
-    public Suppliers(Integer supplierID, String companyName, String phoneNumber, String address, String email, int status) {
+    public Suppliers(Long supplierID, String companyName, String phoneNumber, String address, String email, int status) {
         this.supplierID = supplierID;
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
@@ -94,11 +94,11 @@ public class Suppliers implements Serializable {
         this.status = status;
     }
 
-    public Integer getSupplierID() {
+    public Long getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(Integer supplierID) {
+    public void setSupplierID(Long supplierID) {
         this.supplierID = supplierID;
     }
 

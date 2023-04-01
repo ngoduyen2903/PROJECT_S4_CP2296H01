@@ -72,4 +72,15 @@ public class EmployeesFacade extends AbstractFacade<Employees> implements Employ
         return (Long) query.getSingleResult();
     }
 
+    @Override
+    public Employees loadByUsername(String username, String password) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root root = cq.from(Employees.class);
+        cq.select(root);
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("status"), "1")));
+        Query query = em.createQuery(cq);
+        return (Employees) query.getSingleResult();
+    }
+
 }

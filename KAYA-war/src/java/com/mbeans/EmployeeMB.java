@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mbeans;
 
 import com.cusc.entities.Employees;
 import com.cusc.sessions.EmployeesFacadeLocal;
 import com.sun.java.swing.plaf.windows.resources.windows;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.messageDestinationLinkType;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javafx.scene.control.Alert;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.primefaces.component.confirmdialog.ConfirmDialog;
 
 /**
  *
@@ -28,7 +25,7 @@ public class EmployeeMB {
 
     @EJB
     private EmployeesFacadeLocal employeesFacade;
-    private Integer empID;
+    private Long empID;
     private String fullname;
     private String username;
     private String password;
@@ -38,15 +35,36 @@ public class EmployeeMB {
     private String status;
     private Employees employees;
 
-    
+    List<Employees> list;
+
+    public void confirm(long id) throws IOException {
+        Employees employees = employeesFacade.find(id);
+        employeesFacade.remove(employees);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/KAYA-war/faces/admin/employeeList.xhtml");
+        addMessage("Confirmed", "You have accepted");
+    }
+
+    public String reloadPage() {
+        return "employeeList";
+    }
+
+    public void delete() {
+        addMessage("Confirmed", "Record deleted");
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
     public EmployeeMB() {
+        list = new ArrayList<>();
         employees = new Employees();
     }
 
     public String showProfile(String username) {
         employees = employeesFacade.findByUsername(username);
-        Integer id = employees.getEmployeeID();
+        Long id = employees.getEmployeeID();
         employees = employeesFacade.find(id);
         empID = employees.getEmployeeID();
         return "profile";
@@ -58,7 +76,8 @@ public class EmployeeMB {
     }
 
     public List<Employees> showAllEmployee() {
-        return employeesFacade.findAll();
+        list = employeesFacade.findAll();
+        return list;
     }
 
     public void showEmployeeDetails(Long id) {
@@ -74,6 +93,11 @@ public class EmployeeMB {
     public String deleteEmployee(Long id) {
         employeesFacade.remove(employeesFacade.find(id));
         return "employeeList";
+    }
+
+    public String showAddForm() {
+        employees = null;
+        return "addEmployee";
     }
 
     public String createEmployee() {
@@ -97,11 +121,11 @@ public class EmployeeMB {
         this.employeesFacade = employeesFacade;
     }
 
-    public Integer getEmployeeID() {
+    public Long getEmployeeID() {
         return empID;
     }
 
-    public void setEmployeeID(Integer employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.empID = employeeID;
     }
 

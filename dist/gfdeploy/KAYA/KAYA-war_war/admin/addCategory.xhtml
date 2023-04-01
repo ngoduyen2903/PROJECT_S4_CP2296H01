@@ -2,45 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
-            <ui:define name="content"> 
-                <h:form id="quickForm" >
+            <ui:define name="content">
+                <h:form>
                     <section class="content">
-                        <div class="col">
-                            <div class="col-md-6">
-                                <div class="card card-info">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Create Category</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                            </button>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Add Category</h3>
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <h:outputLabel for="categeryname" value="Category Name *"/>
-                                            <h:inputText value="#{categoryMB.categories.categoryName}" styleClass="form-control" required = "true" id="categeryname" requiredMessage="This field cannot be empty!"/>
-                                            <h:message for = "categeryname" style = "color: red;" /> 
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="catename">Category Name: </label>
+                                                <h:inputText value="#{categoryMB.categories.categoryName}" styleClass="form-control" required = "true" id="catename" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "catename" style = "color: red;" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Description: </label>
+                                                <h:inputText value="#{categoryMB.categories.description}" styleClass="form-control" required = "true" id="description" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "description" style = "color: red;" /> 
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <h:outputLabel for="description" value="Description *"/>
-                                            <h:inputText value="#{categoryMB.categories.description}" styleClass="form-control" required = "true" id="description" requiredMessage="This field cannot be empty!"/>
-                                            <h:message for = "description" style = "color: red;" /> 
+                                        <div class="card-footer">
+                                            <h:commandLink type="submit" class="btn btn-info" action="#{categoryMB.createCategory()}" value="Submit"/>&nbsp;
+                                            <h:link outcome="/admin/categoriesList.xhtml" class="btn btn-info">Back</h:link>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="col-12">
-                                <h:commandButton type="submit" class="btn btn-info" action="#{categoryMB.createCategory()}" value="Submit"/>&nbsp;
-                                <h:link outcome="/admin/categoriesList.xhtml" value="Back" class="btn btn-info"/>
                             </div>
                         </div>
                     </section>
@@ -49,5 +44,4 @@
         </ui:composition>
     </h:body>
 </html>
-
 
