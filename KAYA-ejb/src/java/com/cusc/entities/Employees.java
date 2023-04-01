@@ -48,7 +48,7 @@ public class Employees implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "EmployeeID")
-    private Integer employeeID;
+    private Long employeeID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -87,16 +87,14 @@ public class Employees implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeID")
     private Collection<Orders> ordersCollection;
 
-   
-
     public Employees() {
     }
 
-    public Employees(Integer employeeID) {
+    public Employees(Long employeeID) {
         this.employeeID = employeeID;
     }
 
-    public Employees(Integer employeeID, String fullname, String username, String password, String address, String phoneNumber, String email, int status) {
+    public Employees(Long employeeID, String fullname, String username, String password, String address, String phoneNumber, String email, int status) {
         this.employeeID = employeeID;
         this.fullname = fullname;
         this.username = username;
@@ -107,11 +105,11 @@ public class Employees implements Serializable {
         this.status = status;
     }
 
-    public Integer getEmployeeID() {
+    public Long getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(Integer employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.employeeID = employeeID;
     }
 

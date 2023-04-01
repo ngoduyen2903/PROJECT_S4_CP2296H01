@@ -35,4 +35,6 @@ public interface EmployeesFacadeLocal {
     Employees findByUsername(String username);
 
     Long loginEmployee(String username, String password);
+    
+    Employees loadByUsername(String username,String password);
 }

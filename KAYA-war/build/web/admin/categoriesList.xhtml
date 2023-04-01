@@ -3,7 +3,6 @@
 <html  xmlns="http://www.w3.org/1999/xhtml"
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:p="http://primefaces.org/ui"
        xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
     </h:head>
@@ -40,14 +39,13 @@
                                 <tbody>                              
                                     <ui:repeat value="#{categoryMB.showAllCategory()}" var="itemCategory">
                                         <tr>                                                     
-                                            <td width="100px"><h:outputText value="#{itemCategory.categoryName}"/></td>
+                                            <td><h:outputText value="#{itemCategory.categoryName}"/></td>
                                             <td><h:outputText value="#{itemCategory.description}"/></td>
                                             <td>
                                                 <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalBootstrap" >
                                                     #{categoryMB.showUpdate(itemCategory.categoryID)} Update
                                                 </a>&nbsp;
-
-                                                <h:commandButton class="btn btn-info btn-sm" id="deleteButton" value="Delete" action="#{categoryMB.deleteCategory(itemCategory.categoryID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
+                                                <h:commandLink class="btn btn-info btn-sm" id="deleteButton" value="Delete" action="#{categoryMB.deleteCategory(itemCategory.categoryID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
                                                             return false;
                                                         }
                                                         ;
@@ -64,33 +62,26 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
+                                    <h5>Update Category</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                                 </div>
-                                <section class="content">
-                                    <div class="col">
-                                            <div class="card card-info">
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <h:inputHidden value="#{categoryMB.categories.categoryID}"/>
-                                                        <h:outputLabel for="categeryname" value="Category Name *"/>
-                                                        <h:inputText value="#{categoryMB.categories.categoryName}" styleClass="form-control" required = "true" id="categeryname" requiredMessage="This field cannot be empty!"/>
-                                                       
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <h:outputLabel for="description" value="Description *"/>
-                                                        <h:inputText value="#{categoryMB.categories.description}" styleClass="form-control" required = "true" id="description" requiredMessage="This field cannot be empty!"/>
-                                                       
-                                                    </div>
-                                                </div>
+                                <div class="col">
+                                    <div class="card card-info">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <h:inputHidden value="#{categoryMB.categories.categoryID}"/>
+                                                <h:outputLabel for="categeryname" value="Category Name *"/>
+                                                <h:inputText value="#{categoryMB.categories.categoryName}" styleClass="form-control" required = "true" id="categeryname" requiredMessage="This field cannot be empty!"/>
                                             </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="col-12">
-                                            <h:commandButton type="button" class="btn btn-info" action="#{categoryMB.saveUpdateCategory()}" value="Submit"/>&nbsp;
+                                            <div class="form-group">
+                                                <h:outputLabel for="description" value="Description *"/>
+                                                <h:inputText value="#{categoryMB.categories.description}" styleClass="form-control" required = "true" id="description" requiredMessage="This field cannot be empty!"/>
+                                            </div>
                                         </div>
                                     </div>
-                                </section>
+                                </div>
                                 <div class="modal-footer">
+                                    <h:commandButton type="submit" class="btn btn-info" action="#{categoryMB.saveUpdateCategory()}" value="Submit"/>&nbsp;
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
