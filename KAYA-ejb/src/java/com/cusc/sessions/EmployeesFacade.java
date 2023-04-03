@@ -78,9 +78,20 @@ public class EmployeesFacade extends AbstractFacade<Employees> implements Employ
         CriteriaQuery cq = cb.createQuery();
         Root root = cq.from(Employees.class);
         cq.select(root);
-        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("status"), "1")));
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("password"), password)));
         Query query = em.createQuery(cq);
         return (Employees) query.getSingleResult();
+    }
+
+    @Override
+    public long getCountByUsernamePassword(String username, String password) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root root = cq.from(Employees.class);
+        cq.select(cb.count(root.get("username")));
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("password"), password)));
+        Query query = em.createQuery(cq);
+        return (long) query.getSingleResult();
     }
 
 }

@@ -2,28 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
     </h:head>
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <section class="content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="card card-success card-outline">
-                                        <div class="card-body box-profile">
-                                            <div class="text-center">
-                                                <img class="profile-user-img img-fluid img-circle"
-                                                     src="#{resource['/admin/dist/img/avatar2.png']}"
-                                                     alt="User profile picture"/>
-                                            </div>
-                                            <h3 class="profile-username text-center"><h:outputText value="#{employeeMB.employees.fullname}"/></h3>
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLoginAdminOwner()}"></f:event>
+                </f:metadata>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card card-info card-outline">
+                                    <div class="card-body box-profile">
+                                        <div class="text-center">
+                                            <img class="profile-user-img img-fluid img-circle"
+                                                 src="#{resource['/admin/dist/img/user4-128x128.jpg']}"
+                                                 alt="User profile picture"/>
+                                        </div>
+                                        <h:form>
+                                            <h3 class="profile-username text-center">Duyên Ngô</h3>
+
                                             <ul class="list-group list-group-unbordered mb-3">
                                                 <li class="list-group-item">
-                                                    <b>Full Name:</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.fullname}"/></a>
+                                                    <h:inputHidden value="#{employeeMB.employees.employeeID}"/>
+                                                    <b>Full Name</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.fullname}"/></a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Username</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.username}"/></a>
@@ -32,121 +38,113 @@
                                                     <b>Password</b> <a class="float-right">******</a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Address</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.address}"/></a>
-                                                </li>
-                                                <li class="list-group-item">
                                                     <b>Email</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.email}"/></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Phone Number</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.phoneNumber}"/></a>
+                                                    <b>Phone</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.phoneNumber}"/></a>
                                                 </li>
-                                            </ul>
-                                        </div>
+                                                <li class="list-group-item">
+                                                    <b>Address</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.address}"/></a>
+                                                </li>
+                                            </ul> 
+                                        </h:form>
                                     </div>
                                 </div>
-
-                                <div class="col-md-9">
-                                    <div class="card">
-                                        <div class="card-header p-2">
-                                            <ul class="nav nav-tabs">
-                                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Change Password</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Update profile</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="tab-content">
-                                                <div class="active tab-pane" id="activity">
-                                                    <div class="post">
-                                                        <div class="card-body">
-                                                            <form class="form-horizontal">
-                                                                <h:inputHidden value="#{employeeMB.employees.employeeID}"/>
-                                                                <div class="form-group row">
-                                                                    <h:outputLabel for="inputName" value="Old Password" class="col-sm-3 col-form-label"/>
-                                                                    <div class="col-sm-9">
-                                                                        <h:inputText class="form-control" id="inputName" value="#{employeeMB.employees.password}"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h:outputLabel for="inputName" class="col-sm-3 col-form-label" value="New Password"/>
-                                                                    <div class="col-sm-9">
-                                                                        <h:inputText class="form-control" id="inputName" value=""/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h:outputLabel class="col-sm-3 col-form-label" value="Confirm Password"/>
-                                                                    <div class="col-sm-9">
-                                                                        <h:inputText class="form-control" id="inputName" value=""/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <div class="offset-sm-3 col-sm-10">
-                                                                        <h:commandButton type="submit" class="btn btn-success" value="Submit"/>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-header p-2">
+                                        <ul class="nav nav-tabs"> 
+                                            <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Edit Profile</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Change Password</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--Tab edit profile-->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="active tab-pane" id="settings">
+                                                <h:form>
+                                                    <div class="form-group row">
+                                                        <label for="inputName" class="col-sm-2 col-form-label">Full Name</label>
+                                                        <div class="col-sm-10">
+                                                            <h:inputHidden value="#{employeeMB.employees.employeeID}"/>
+                                                            <h:inputText value="#{employeeMB.employees.fullname}" styleClass="form-control" required = "true" id="fullname" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "fullname" style = "color: red;" /> 
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="tab-pane" id="settings">
-                                                    <form class="form-horizontal">
-                                                        <h:inputHidden value="#{employeeMB.employees.employeeID}"/>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel for="inputName" value="Fullname" class="col-sm-2 col-form-label"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputName" value="#{employeeMB.employees.fullname}"/>
-                                                            </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail" class="col-sm-2 col-form-label">Username</label>
+                                                        <div class="col-sm-10">
+                                                            <h:inputText value="#{employeeMB.employees.username}" styleClass="form-control" required = "true" id="username" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "username" style = "color: red;" /> 
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel for="inputName" class="col-sm-2 col-form-label" value="Username"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputName" value="#{employeeMB.employees.username}"/>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputName2" class="col-sm-2 col-form-label">Address</label>
+                                                        <div class="col-sm-10">
+                                                            <h:inputText value="#{employeeMB.employees.address}" styleClass="form-control" required = "true" id="address" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "address" style = "color: red;" /> 
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel class="col-sm-2 col-form-label" value="Password"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputName" value="#{employeeMB.employees.password}"/>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputExperience" class="col-sm-2 col-form-label">Phone Number</label>
+                                                        <div class="col-sm-10">
+                                                            <h:inputText value="#{employeeMB.employees.phoneNumber}" maxlength="11" styleClass="form-control" required = "true" id="phone" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "phone" style = "color: red;" /> 
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel for="inputEmail" class="col-sm-2 col-form-label" value="Email"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputEmail" value="#{employeeMB.employees.email}"/>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputSkills" class="col-sm-2 col-form-label">Email</label>
+                                                        <div class="col-sm-10">
+                                                            <h:inputText value="#{employeeMB.employees.email}"  styleClass="form-control" required = "true" id="email" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "email" style = "color: red;" /> 
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel for="inputName2" class="col-sm-2 col-form-label" value="Phone Number"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputName2" value="#{employeeMB.employees.phoneNumber}"/>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-2 col-sm-10">
+                                                            <h:commandButton type="submit" class="btn btn-info btn-sm" value="Submit"/>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel for="inputExperience" class="col-sm-2 col-form-label" value="Address"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputExperience" value="#{employeeMB.employees.address}"/>
-                                                            </div>
+                                                    </div>
+                                                </h:form>
+                                            </div>
+                                            <!--Tab change password-->
+                                            <div class="tab-pane" id="activity">
+                                                <h:form>
+                                                    <div class="form-group row">
+                                                        <label for="inputName" class="col-sm-3 col-form-label">Old Password</label>
+                                                        <div class="col-sm-9">
+                                                            <h:inputText styleClass="form-control" required = "true" id="old" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "old" style = "color: red;" /> 
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <h:outputLabel for="inputExperience" class="col-sm-2 col-form-label" value="Status"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText class="form-control" id="inputExperience" value="#{employeeMB.employees.status}"/>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail" class="col-sm-3 col-form-label">New Password</label>
+                                                        <div class="col-sm-9">
+                                                            <h:inputText styleClass="form-control" required = "true" id="new" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "new" style = "color: red;" /> 
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <div class="offset-sm-2 col-sm-10">
-                                                                <h:commandButton type="submit" class="btn btn-success" value="Submit"/>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputName2" class="col-sm-3 col-form-label">Confirm Password</label>
+                                                        <div class="col-sm-9">
+                                                            <h:inputText styleClass="form-control" required = "true" id="confirm" requiredMessage="This field cannot be empty!"/>
+                                                            <h:message for = "confirm" style = "color: red;" /> 
                                                         </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-3 col-sm-9">
+                                                            <h:commandButton type="submit" class="btn btn-info btn-sm" value="Submit"/>
+                                                        </div>
+                                                    </div>
+                                                </h:form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </h:form>
+                    </div>
+                </section>
             </ui:define>
         </ui:composition>
     </h:body>

@@ -10,6 +10,9 @@
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content"> 
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
                 <h:form id="quickForm" >
                     <section class="content">
                         <div class="row">
@@ -56,7 +59,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <h:outputLabel for="discount" value="Discount"/>
+                                            <h:outputLabel for="discount" value="Discount (%)"/>
                                             <h:inputText value="#{promotionMB.promotions.discount}"  styleClass="form-control" required = "true" id="discount" requiredMessage="This field cannot be empty!"/>
                                             <h:message for = "discount" style = "color: red;" />
                                         </div>

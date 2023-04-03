@@ -9,6 +9,9 @@
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
                 <h:form>
                     <div class="row mb-2">
                         <div class="col-sm-6">

@@ -29,7 +29,9 @@ public interface CustomersFacadeLocal {
     List<Customers> findRange(int[] range);
 
     int count();
-    
+
     Customers loadByUsername(String username,String password);
-    
+
+    long getCountByUsernamePassword(String username, String password);
+
 }
