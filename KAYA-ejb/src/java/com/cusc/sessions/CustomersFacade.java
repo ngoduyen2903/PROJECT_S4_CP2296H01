@@ -8,7 +8,6 @@ package com.cusc.sessions;
 import com.cusc.entities.Customers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -36,25 +35,24 @@ public class CustomersFacade extends AbstractFacade<Customers> implements Custom
 
     @Override
     public Customers loadByUsername(String username, String password) {
-         CriteriaBuilder cb = em.getCriteriaBuilder();
-         CriteriaQuery cq = cb.createQuery();
-         Root root = cq.from(Customers.class);
-         cq.select(root);
-         cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("status"), "1")));
-         Query query = em.createQuery(cq);
-         return (Customers) query.getSingleResult();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root root = cq.from(Customers.class);
+        cq.select(root);
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("password"), password)));
+        Query query = em.createQuery(cq);
+        return (Customers) query.getSingleResult();
     }
-    
-    @Override
-    public Customers login(String username) {
-        Query query = em.createQuery("SELECT c FROM Customers c WHERE c.Username = :username");
-        query.setParameter("username", username);
 
-        try {
-            return (Customers) query.getSingleResult();
-        } catch (NoResultException ex) {
-            return null;
-        }
+    @Override
+    public long getCountByUsernamePassword(String username, String password) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root root = cq.from(Customers.class);
+        cq.select(cb.count(root.get("username")));
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("password"), password)));
+        Query query = em.createQuery(cq);
+        return (long) query.getSingleResult();
     }
-    
+
 }

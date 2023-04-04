@@ -10,14 +10,18 @@
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                </f:metadata>
                 <h:form>
+
                     <section class="content">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card card-info">
                                         <div class="card-header">
-                                            <h3 class="card-title">Add new Brand</h3>
+                                            <h3 class="card-title">Add Brand</h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group">
