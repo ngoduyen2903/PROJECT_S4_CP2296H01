@@ -34,14 +34,14 @@ body,
     }
   }
 
-  @supports not (-webkit-touch-callout: none) {
+/*  @supports not (-webkit-touch-callout: none) {
     .layout-fixed & .sidebar {
       height: calc(100vh - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
     }
     .layout-fixed.text-sm & .sidebar {
       height: calc(100vh - (#{$main-header-height-sm-inner} + #{$main-header-bottom-border-width}));
     }
-  }
+  }*/
 
   .layout-navbar-fixed.layout-fixed & {
     .control-sidebar {
@@ -589,13 +589,13 @@ body:not(.layout-fixed) {
   }
 }
 
-@supports (-webkit-touch-callout: none) {
+/*@supports (-webkit-touch-callout: none) {
   .layout-fixed {
     .main-sidebar {
       height: inherit;
     }
   }
-}
+}*/
 
 .main-footer {
   background-color: $main-footer-bg;

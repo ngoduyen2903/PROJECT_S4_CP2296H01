@@ -29,5 +29,8 @@ public interface OwnerFacadeLocal {
     List<Owner> findRange(int[] range);
 
     int count();
-    
+
+    Owner loadByUsername(String username, String password);
+
+    long getCountByUsernamePassword(String username, String password);
 }

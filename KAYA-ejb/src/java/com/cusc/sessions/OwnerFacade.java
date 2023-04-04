@@ -9,6 +9,10 @@ import com.cusc.entities.Owner;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -28,5 +32,27 @@ public class OwnerFacade extends AbstractFacade<Owner> implements OwnerFacadeLoc
     public OwnerFacade() {
         super(Owner.class);
     }
-    
+
+    @Override
+    public Owner loadByUsername(String username, String password) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root root = cq.from(Owner.class);
+        cq.select(root);
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("password"), password)));
+        Query query = em.createQuery(cq);
+        return (Owner) query.getSingleResult();
+    }
+
+    @Override
+    public long getCountByUsernamePassword(String username, String password) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root root = cq.from(Owner.class);
+        cq.select(cb.count(root.get("username")));
+        cq.where(cb.and(cb.equal(root.get("username"), username), cb.equal(root.get("password"), password)));
+        Query query = em.createQuery(cq);
+        return (long) query.getSingleResult();
+    }
+
 }

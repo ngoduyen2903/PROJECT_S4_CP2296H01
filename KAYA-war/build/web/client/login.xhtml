@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css"></link>
         <h:outputStylesheet name="/client/login_css/css/style.css"/>
@@ -19,23 +20,26 @@
 
                         <div class="signin-form">
                             <h2 class="form-title">Sign up</h2>
-                            <form method="POST" class="register-form" id="login-form">
+                            <h:form>
+                                <c:if test="#{loginMB.statusLogin == 5}">
+                                    Login Fail
+                                </c:if>
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                    <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                                    <h:inputText value="#{loginMB.username}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                    <h:inputSecret value="#{loginMB.password}" />
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                     <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                                 </div>
                                 <div class="form-group form-button">
-                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                    <h:commandButton action="#{loginMB.loginCustomer()}" value="Login" type="submit" />
                                 </div>
-                            </form>
+                            </h:form>
                             <div class="social-login">
                                 <span class="social-label">Or login with</span>
                                 <ul class="socials">

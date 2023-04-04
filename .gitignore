@@ -4,3 +4,5 @@
 /KAYA-ejb/dist/
 /KAYA-ejb/build/
 /KAYA-war/build/
+/nbproject/private/
+/KAYA-ejb/nbproject/private/
