@@ -6,6 +6,7 @@
 package com.cusc.sessions;
 
 import com.cusc.entities.Categories;
+import com.cusc.entities.Customers;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,5 @@ public interface CategoriesFacadeLocal {
     List<Categories> findRange(int[] range);
 
     int count();
-    
+       
 }

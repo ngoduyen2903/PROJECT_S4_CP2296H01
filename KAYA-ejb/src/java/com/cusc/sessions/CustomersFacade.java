@@ -8,6 +8,7 @@ package com.cusc.sessions;
 import com.cusc.entities.Customers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -44,6 +45,16 @@ public class CustomersFacade extends AbstractFacade<Customers> implements Custom
          return (Customers) query.getSingleResult();
     }
     
-    
+    @Override
+    public Customers login(String username) {
+        Query query = em.createQuery("SELECT c FROM Customers c WHERE c.Username = :username");
+        query.setParameter("username", username);
+
+        try {
+            return (Customers) query.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
     
 }
