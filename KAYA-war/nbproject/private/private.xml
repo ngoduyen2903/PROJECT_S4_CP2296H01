@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/odieng/Desktop/New%20folder/PROJECT_S4_CP2296H01/KAYA-war/web/admin/brandList.xhtml</file>
             <file>file:/C:/Users/odieng/Desktop/New%20folder/PROJECT_S4_CP2296H01/KAYA-war/web/admin/login.xhtml</file>
+=======
+            <file>file:/E:/PROJECT_S4_CP2296H01/KAYA-war/src/java/com/mbeans/CustomerMB.java</file>
+            <file>file:/E:/PROJECT_S4_CP2296H01/KAYA-war/web/client/register.xhtml</file>
+>>>>>>> c9263f5e9f69768f1ee88787fe1ef7a73bf02b86
         </group>
     </open-files>
 </project-private>

@@ -30,9 +30,9 @@
                                                 <h:message for = "brandname" style = "color: red;" /> 
                                             </div>
                                             <div class="form-group">
-                                                <label for="Branddescription">Brand Description: </label>
-                                                <h:inputText value="#{brandMB.brands.description}" styleClass="form-control" required = "true" id="Branddescription" requiredMessage="This field cannot be empty!"/>
-                                                <h:message for = "Branddescription" style = "color: red;" /> 
+                                                <label for="branddescription">Brand Description: </label>
+                                                <h:inputText value="#{brandMB.brands.description}" styleClass="form-control" required = "true" id="branddescription" requiredMessage="This field cannot be empty!"/>
+                                                <h:message for = "branddescription" style = "color: red;" /> 
                                             </div>
                                             <div class="form-group">
                                                 <label for="brandweb">Brand Web: </label>
@@ -41,7 +41,8 @@
                                             </div>                                           
                                         </div>
                                         <div class="card-footer">
-                                            <h:commandLink type="submit" class="btn btn-info" action="#{brandMB.createBrands()}" value="Submit"/>&nbsp;
+                                            <h:commandLink type="submit" class="btn btn-info" action="#{brandMB.createBrands()}" value="Save">                                               
+                                            </h:commandLink> &nbsp;
                                             <h:link outcome="/admin/brandList.xhtml" class="btn btn-info">Back</h:link>
                                         </div>
                                     </div>
