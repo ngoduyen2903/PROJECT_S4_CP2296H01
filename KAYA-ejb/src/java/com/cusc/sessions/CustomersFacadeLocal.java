@@ -32,4 +32,5 @@ public interface CustomersFacadeLocal {
     
     Customers loadByUsername(String username,String password);
     
+    public Customers login(String username);
 }
