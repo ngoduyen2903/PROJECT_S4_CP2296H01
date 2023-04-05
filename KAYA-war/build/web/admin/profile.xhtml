@@ -38,7 +38,8 @@
                                                     <b>Password</b> <a class="float-right">******</a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Email</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.email}"/></a>
+                                                    <b>Email</b> <a class="float-right">
+                                                        <h:outputText value="#{employeeMB.employees.email}"/></a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Phone</b> <a class="float-right"><h:outputText value="#{employeeMB.employees.phoneNumber}"/></a>
@@ -102,7 +103,7 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="offset-sm-2 col-sm-10">
-                                                            <h:commandButton type="submit" class="btn btn-info btn-sm" value="Submit"/>
+                                                            <h:commandButton type="submit" action="#{employeeMB.saveUpdateEmployee()}" class="btn btn-info btn-sm" value="Submit" onclick="message();"/>
                                                         </div>
                                                     </div>
                                                 </h:form>
@@ -113,7 +114,7 @@
                                                     <div class="form-group row">
                                                         <label for="inputName" class="col-sm-3 col-form-label">Old Password</label>
                                                         <div class="col-sm-9">
-                                                            <h:inputText styleClass="form-control" required = "true" id="old" requiredMessage="This field cannot be empty!"/>
+                                                            <h:inputText value="******" styleClass="form-control" required = "true" id="old" requiredMessage="This field cannot be empty!"/>
                                                             <h:message for = "old" style = "color: red;" /> 
                                                         </div>
                                                     </div>
@@ -133,7 +134,7 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="offset-sm-3 col-sm-9">
-                                                            <h:commandButton type="submit" class="btn btn-info btn-sm" value="Submit"/>
+                                                            <h:commandButton type="submit" class="btn btn-info btn-sm" value="Submit" action="#{employeeMB.saveUpdateEmployee()}"/>
                                                         </div>
                                                     </div>
                                                 </h:form>
@@ -145,6 +146,11 @@
                         </div>
                     </div>
                 </section>
+                <script>
+                    function message(){
+                        alert('Profile successfully updated!');
+                    }
+                </script>
             </ui:define>
         </ui:composition>
     </h:body>

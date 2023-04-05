@@ -11,18 +11,18 @@
     </h:head>
     <h:body class="hold-transition login-page">
         <h:form>
-            <c:if test="#{loginMB.statusLogin == 3}">
-                Login Fail
-            </c:if>
             <div class="login-box">
                 <div class="card card-outline card-info">
                     <div class="card-header text-center">
-                        <a href="#" class="h1">Login Here</a>
+                        <a href="/admin/login.xhtml" class="h1">Login Here</a>
                     </div>
                     <div class="card-body">
                         <p class="login-box-msg">Sign in to start your session</p>
+                        <c:if test="#{loginMB.statusLogin == 3}">
+                            <p style="color: red;">Username or password is not correct!</p>
+                        </c:if>
                         <div class="input-group mb-3">
-                            <h:inputText value="#{loginMB.username}" class="form-control"/>
+                            <h:inputText value="#{loginMB.username}" id="username" class="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -30,12 +30,18 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <h:inputSecret value="#{loginMB.password}" class="form-control"/>
+                            <h:message for = "username" style = "color: red;" /> 
+                        </div>
+                        <div class="input-group mb-3">
+                            <h:inputSecret value="#{loginMB.password}" class="form-control" id="password" required = "true" requiredMessage="This field cannot be empty!"/>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-key"></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <h:message for = "password" style = "color: red;" /> 
                         </div>
                         <div class="row">
                             <div class="col-8">
@@ -50,9 +56,9 @@
                         <div class="social-auth-links text-center mt-2 mb-3">
                             <h:commandButton value="Login" action="#{loginMB.processLogin()}" type="submit" class="btn btn-block btn-info"/>
                         </div>
-                        <p class="mb-1">
-                            <a href="forgot-password.html">I forgot my password</a>
-                        </p>
+                        <!--                        <p class="mb-1">
+                                                    <a href="forgot-password.html">I forgot my password</a>
+                                                </p>-->
                     </div>
                 </div>
             </div>

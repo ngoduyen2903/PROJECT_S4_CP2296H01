@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>KAYA Furniture</title>
         <h:outputStylesheet name="/client/img/favicon.png"/>
         <h:outputStylesheet name="/client/css/bootstrap.min.css"/>
         <h:outputStylesheet name="/client/css/animate.css"/>
@@ -39,18 +39,17 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <h:link class="nav-link dropdown-toggle" outcome="/client/blog.xhtml" id="navbarDropdown_1"
-                                           role="button">
+                                                role="button">
                                             Shop
                                         </h:link>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                             <h:link class="dropdown-item" outcome="/client/product.xhtml"> shop category</h:link>
                                             <h:link class="dropdown-item" outcome="productDetail.xhtml">product details</h:link>
-
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <h:link class="nav-link dropdown-toggle" outcome="/client/blog.xhtml" id="navbarDropdown_3"
-                                           role="button">
+                                                role="button">
                                             pages
                                         </h:link>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -63,7 +62,7 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <h:link class="nav-link dropdown-toggle" outcome="/client/blog.xhtml" id="navbarDropdown_2"
-                                           role="button">
+                                                role="button">
                                             blog
                                         </h:link>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -79,12 +78,16 @@
                             </div>
                             <div class="hearer_icon d-flex">
                                 <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                                <a href=""><i class="ti-heart"></i></a>
+                                <h:link outcome="/client/login.xhtml">
+                                    <i class="fas fa-user"></i>&nbsp;<span>&nbsp;Login</span>
+                                </h:link>
+                                <h:link outcome="/client/register.xhtml">
+                                    <i class="fas fa-user"></i>&nbsp;<span>&nbsp;Register</span>
+                                </h:link>
                                 <div class="dropdown cart">
-                                    <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <h:link class="dropdown-toggle" outcome="/client/cart.xhtml" id="navbarDropdown3" role="button">
                                         <i class="fas fa-cart-plus"></i>
-                                    </a>
+                                    </h:link>
                                 </div>
                             </div>
                         </nav>

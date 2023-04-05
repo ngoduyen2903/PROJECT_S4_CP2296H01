@@ -15,39 +15,34 @@
                     <div class="signin-content">
                         <div class="signin-image">
                             <figure><img src="#{resource['/client/login_css/images/signin-image.jpg']}" alt="sing up image"/></figure>
-                            <a href="#" class="signup-image-link">Create an account</a>
                         </div>
-
                         <div class="signin-form">
-                            <h2 class="form-title">Sign up</h2>
+                            <h2 class="form-title">Login Here</h2>
                             <h:form>
                                 <c:if test="#{loginMB.statusLogin == 5}">
-                                    Login Fail
-                                </c:if>
+                                    <p style="color:red;">Username or password is not correct!</p>
+                                </c:if><br/>
                                 <div class="form-group">
-                                    <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                    <h:inputText value="#{loginMB.username}" />
+                                    <label for="username"><img src="#{resource['/admin/dist/img/user.png']}"/></label>
+                                    <h:inputText id="username" value="#{loginMB.username}" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
+                                    <h:message for = "username" style = "color: red;" /> 
                                 </div>
                                 <div class="form-group">
-                                    <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                    <h:inputSecret value="#{loginMB.password}" />
+                                    <label for="password"><img src="#{resource['/admin/dist/img/padlock.png']}"/></label>
+                                    <h:inputSecret id="password" value="#{loginMB.password}" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
+                                    <h:message for = "password" style = "color: red;" /> 
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                     <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                                 </div>
                                 <div class="form-group form-button">
-                                    <h:commandButton action="#{loginMB.loginCustomer()}" value="Login" type="submit" />
+                                    <h:commandButton action="#{loginMB.loginCustomer()}" value="Login" type="submit" class="form-submit"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="remember-me" class="label-agree-term">Do not have an account?</label>&nbsp;<a href="#">Register Here</a>
                                 </div>
                             </h:form>
-                            <div class="social-login">
-                                <span class="social-label">Or login with</span>
-                                <ul class="socials">
-                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
