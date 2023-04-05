@@ -11,8 +11,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -24,7 +22,7 @@ public class BrandMB {
 
     @EJB
     private BrandsFacadeLocal brandsFacade;
-    private Integer brandID;
+    private Long brandID;
     private String brandName;
     private String description;
     private String website;
@@ -43,13 +41,13 @@ public class BrandMB {
         return "brandList";
     }
 
-    public String deleteBrands(Integer id) {
+    public String deleteBrands(Long id) {
         Brands d = brandsFacade.find(id);
         brandsFacade.remove(d);
         return "brandList";
     }
 
-    public String editBrands(Integer id) {
+    public String editBrands(Long id) {
         brands = brandsFacade.find(id);
         return "editBrand";
     }
@@ -64,11 +62,11 @@ public class BrandMB {
         return "addBrand";
     }
 
-    public Integer getBrandID() {
+    public Long getBrandID() {
         return brandID;
     }
 
-    public void setBrandID(Integer brandID) {
+    public void setBrandID(Long brandID) {
         this.brandID = brandID;
     }
 
@@ -111,5 +109,6 @@ public class BrandMB {
     public void setBrandsFacade(BrandsFacadeLocal brandsFacade) {
         this.brandsFacade = brandsFacade;
     }
+    
    
 }

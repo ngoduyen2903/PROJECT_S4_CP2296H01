@@ -9,9 +9,10 @@
     <h:body>
         <ui:composition template="/layouts/adminLayouts.xhtml">
             <ui:define name="content">
-                <f:metadata>
-                    <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
-                </f:metadata>
+                <h:form>
+                    <f:metadata>
+                        <f:event type="preRenderView" listener="#{loginMB.checkLogin1()}"></f:event>
+                    </f:metadata>
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Order Management</h1>
@@ -30,68 +31,40 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
+                                    <th>Order ID</th>
+                                    <th>Customer ID</th>
+                                    <th>Employee ID</th>
+                                    <th>Order Date</th>
+                                    <th>Total Amount</th>                                   
+                                    <th>Total Price</th>
+                                    <th>Payment MEthod</th>
+                                    <th>Note</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><i class="fas fa-hourglass"></i></td>
-                                    <td>
-                                        <h:link outcome="/admin/editCategory.xhtml">
-                                            <span class="badge bg-danger">Processing</span>
-                                        </h:link> &emsp;
-                                        <i class="fa fa-info-circle" title="View details"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>
-                                        <i class="fas fa-check"></i>
-                                    </td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td>7</td>
-                                    <td>A</td>
-                                </tr>
+                                <ui:repeat value="#{orderMB.showAllOrders()}" var="itemOrders">
+                                    <tr>                                                     
+                                        <td><h:outputText value="#{itemOrders.orderID}"/></td>
+                                        <td><h:outputText value="#{itemOrders.customerID}"/></td>
+                                        <td><h:outputText value="#{itemOrders.employeeID}"/></td>
+                                        <td><h:outputText value="#{itemOrders.orderDate}"/></td>
+                                        <td><h:outputText value="#{itemOrders.totalAmount}"/></td>
+                                        <td><h:outputText value="#{itemOrders.totalPrice}"/></td>
+                                        <td><h:outputText value="#{itemOrders.paymentMethod}"/></td>
+                                        <td><h:outputText value="#{itemOrders.note}"/></td>
+                                        <td><h:outputText value="#{itemOrders.status}"/></td>
+                                        <td>                                               
+                                            <h:commandLink class="btn btn-info btn-sm" value="Confirm"/>&nbsp;
+                                        </td>
+                                    </tr>  
+                                </ui:repeat>   
                             </tbody>
                         </table>
                     </div>
                 </div>
+                    </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

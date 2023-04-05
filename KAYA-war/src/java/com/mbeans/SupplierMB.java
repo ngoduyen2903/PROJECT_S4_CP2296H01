@@ -43,7 +43,7 @@ public class SupplierMB {
     }
 
     public String showAddForm() {
-        supplier = null;
+        supplier = new Suppliers();
         return "addSupplier";
     }
 
@@ -54,7 +54,7 @@ public class SupplierMB {
 
     public String showUpdate(Long id) {
         supplier = suppliersFacade.find(id);
-        return "";
+        return "editSupplier";
     }
 
     public String saveUpdate() {

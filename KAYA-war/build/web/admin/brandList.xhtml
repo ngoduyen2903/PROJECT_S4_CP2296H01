@@ -44,10 +44,8 @@
                                             <td><h:outputText value="#{itemBrands.brandName}"/></td>
                                             <td><h:outputText value="#{itemBrands.description}"/></td>
                                             <td><h:outputText value="#{itemBrands.website}"/></td>                                         
-                                            <td class="project-actions text-right">    
-                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalBootstrap" >
-                                                    #{brandMB.editBrands(itemBrands.brandID)} Update
-                                                </a>&nbsp;
+                                            <td class="project-actions text-right">                                                   
+                                                <h:commandLink class="btn btn-info btn-sm" action="#{brandMB.editBrands(itemBrands.brandID)}" value="Update"/>&nbsp;
                                                 <h:commandLink class="btn btn-info btn-sm" action="#{brandMB.deleteBrands(itemBrands.brandID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
                                                             return false;
                                                         }

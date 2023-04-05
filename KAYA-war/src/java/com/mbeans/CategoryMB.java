@@ -36,7 +36,7 @@ public class CategoryMB {
 
     public String showUpdate(Long id) {
         categories = categoriesFacade.find(id);
-        return "";
+        return "editCategory";
     }
 
     public String saveUpdateCategory() {

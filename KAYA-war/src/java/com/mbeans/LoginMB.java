@@ -16,7 +16,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 
 /**
  *

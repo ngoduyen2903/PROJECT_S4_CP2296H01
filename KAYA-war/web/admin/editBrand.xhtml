@@ -25,6 +25,7 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="brandname">Brand Name: </label>
+                                                <h:inputHidden value="#{brandMB.brands.brandID}"/>
                                                 <h:inputText value="#{brandMB.brands.brandName}" styleClass="form-control" required = "true" id="brandname" requiredMessage="This field cannot be empty!"/>
                                                 <h:message for = "brandname" style = "color: red;" /> 
                                             </div>
@@ -40,8 +41,8 @@
                                             </div>                                           
                                         </div>
                                         <div class="card-footer">
-                                            <h:commandLink type="submit" class="btn btn-info" action="#{brandMB.saveBrands()}" value="Save">
-                                            </h:commandLink> &nbsp;
+                                            <h:commandButton type="submit" class="btn btn-info" action="#{brandMB.saveBrands()}" value="Save"/>&nbsp;
+                                          
                                             <h:link outcome="/admin/brandList.xhtml" class="btn btn-info">Back</h:link>
                                         </div>
                                     </div>

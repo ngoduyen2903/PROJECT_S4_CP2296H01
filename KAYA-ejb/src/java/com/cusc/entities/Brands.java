@@ -43,7 +43,7 @@ public class Brands implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "BrandID")
-    private Integer brandID;
+    private Long brandID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -63,21 +63,21 @@ public class Brands implements Serializable {
     public Brands() {
     }
 
-    public Brands(Integer brandID) {
+    public Brands(Long brandID) {
         this.brandID = brandID;
     }
 
-    public Brands(Integer brandID, String brandName, String description) {
+    public Brands(Long brandID, String brandName, String description) {
         this.brandID = brandID;
         this.brandName = brandName;
         this.description = description;
     }
 
-    public Integer getBrandID() {
+    public Long getBrandID() {
         return brandID;
     }
 
-    public void setBrandID(Integer brandID) {
+    public void setBrandID(Long brandID) {
         this.brandID = brandID;
     }
 
