@@ -34,9 +34,7 @@ public class LoginMB implements Serializable {
 
     @EJB
     private EmployeesFacadeLocal employeesFacade;
-
     private LoginMB loginMB;
-
     private String username;
     private String password;
     private int statusLogin;

@@ -35,7 +35,7 @@ public class EmployeeMB {
     private String status;
     private Employees employees;
 
-    List<Employees> list;
+    private List<Employees> list;
 
     public void confirm(long id) throws IOException {
         Employees employees = employeesFacade.find(id);
@@ -82,7 +82,6 @@ public class EmployeeMB {
 
     public void showEmployeeDetails(Long id) {
         employees = employeesFacade.find(id);
-        System.out.println("-----------------");
     }
 
     public String showEmployeeDetail_ver1(long id) {
@@ -183,6 +182,22 @@ public class EmployeeMB {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Employees> getList() {
+        return list;
+    }
+
+    public void setList(List<Employees> list) {
+        this.list = list;
+    }
+
+    public Long getEmpID() {
+        return empID;
+    }
+
+    public void setEmpID(Long empID) {
+        this.empID = empID;
     }
 
 }

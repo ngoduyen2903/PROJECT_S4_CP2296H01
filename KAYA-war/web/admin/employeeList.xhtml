@@ -31,7 +31,8 @@
                                         <th>Phone</th>
                                         <th>Email</th>
                                         <th>Account Status</th>
-                                        <th>Action</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,14 +47,15 @@
                                             </td>
                                             <td>
                                                 <h:commandButton class="btn btn-info btn-sm" type="submit" value="#{itemEmployee.status == 1 ? 'Disable' : 'Enable'}" action="#{employeeAccountMB.toggleEnabled(itemEmployee.employeeID)}" />&nbsp;
-                                                <h:commandLink class="btn btn-info btn-sm" action="#{employeeMB.deleteEmployee(itemEmployee.employeeID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
-                                                            return false;
-                                                        }
-                                                        ;
-                                                        return true;">
-                                                    <i class="fas fa-trash"></i>
-                                                </h:commandLink>
+
                                             </td>
+                                            <td><h:commandLink class="btn btn-info btn-sm" action="#{employeeMB.deleteEmployee(itemEmployee.employeeID)}" onclick="if (!confirm('Are you sure you want to delete this?')) {
+                                                        return false;
+                                                    }
+                                                    ;
+                                                    return true;">
+                                                    <i class="fas fa-trash"></i>
+                                                </h:commandLink></td>
                                         </tr>  
                                     </ui:repeat>                                    
                                 </tbody>
