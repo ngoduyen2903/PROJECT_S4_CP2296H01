@@ -11,6 +11,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -49,7 +51,7 @@ public class BrandMB {
 
     public String editBrands(Integer id) {
         brands = brandsFacade.find(id);
-        return "";
+        return "editBrand";
     }
 
     public String saveBrands() {
@@ -58,7 +60,7 @@ public class BrandMB {
     }
 
     public String showAddForm() {
-        brands = null;
+        brands = new Brands();
         return "addBrand";
     }
 
@@ -109,5 +111,5 @@ public class BrandMB {
     public void setBrandsFacade(BrandsFacadeLocal brandsFacade) {
         this.brandsFacade = brandsFacade;
     }
-
+   
 }
