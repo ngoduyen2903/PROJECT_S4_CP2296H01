@@ -10,62 +10,6 @@
         <h:outputStylesheet name="/client/login_css/css/style.css"/>
     </h:head>
     <h:body>
-<<<<<<< HEAD
-        <h:form>
-            <div class="main">
-                <section class="sign-in">
-                    <div class="container">
-                        <div class="signin-content">
-                            <div class="signin-image">
-                                <figure><img src="#{resource['/client/login_css/images/signin-image.jpg']}" alt="sing up image"/></figure>
-                            </div>
-                            <div class="signin-form">
-                                <h2 class="form-title">Register</h2>
-                                <form method="POST" class="register-form" id="login-form">
-                                    <div class="form-group">
-                                        <label for="fullname"><img src="#{resource['/admin/dist/img/name.png']}"/></label>
-                                        <h:inputText id="fullname" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "fullname" style = "color: red;" /> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="username"><img src="#{resource['/admin/dist/img/padlock.png']}"/></label>
-                                        <h:inputText id="username" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "username" style = "color: red;" /> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password"><img src="#{resource['/admin/dist/img/padlock.png']}"/></label>
-                                        <h:inputText id="password" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "password" style = "color: red;" /> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address"><img src="#{resource['/admin/dist/img/gps.png']}"/></label>
-                                        <h:inputText id="address" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "address" style = "color: red;" /> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone"><img src="#{resource['/admin/dist/img/phone-call.png']}"/></label>
-                                        <h:inputText id="phone" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "phone" style = "color: red;" /> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email"><img src="#{resource['/admin/dist/img/email.png']}"/></label>
-                                        <h:inputText id="email" styleClass="form-control" required = "true" requiredMessage="This field cannot be empty!"/>
-                                        <h:message for = "email" style = "color: red;" /> 
-                                    </div>
-                                    <div class="form-group form-button">
-                                        <input type="submit" name="signin" id="signin" class="form-submit" value="Register"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="remember-me" class="label-agree-term">Already have an account?</label>&nbsp;<a href="#">Login Here</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </h:form>
-=======
         <div class="main">
             <section class="signup">
                 <div class="container">
@@ -122,7 +66,6 @@
                 </div>
             </section>
         </div>
->>>>>>> 231bdb9a24d414d90ee67cf5f40e19fe98124af5
         <h:outputScript name="/client/login_css/vendor/jquery/jquery.min.js"/>
         <h:outputScript name="/client/login_css/js/main.js"/>
     </h:body>
